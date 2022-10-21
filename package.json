@@ -2,6 +2,8 @@
   "name": "awful-types",
   "version": "1.0.0",
   "description": "Types for Awful.wtf",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aqwerty420/awful-types.git"
@@ -10,5 +12,9 @@
   "bugs": {
     "url": "https://github.com/aqwerty420/awful-types/issues"
   },
-  "homepage": "https://github.com/aqwerty420/awful-types#readme"
+  "homepage": "https://github.com/aqwerty420/awful-types#readme",
+  "dependencies": {
+    "@typescript-to-lua/language-extensions": "^1.0.0",
+    "lua-types": "^2.13.0"
+  }
 }

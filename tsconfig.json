@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",
+      "lib": ["ESNext"],
+      "types": ["@typescript-to-lua/language-extensions", "lua-types/5.1"],
+      "strict": true
+    },
+    "tstl": {
+        "luaTarget": "5.1",
+    },
+}
