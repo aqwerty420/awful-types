@@ -8,4 +8,5 @@
     "tstl": {
         "luaTarget": "5.1",
     },
+    "exclude": ["node_modules/**/*"]
 }

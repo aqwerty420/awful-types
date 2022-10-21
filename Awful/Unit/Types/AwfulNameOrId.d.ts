@@ -1,1 +1,0 @@
-type AwfulNameOrId = string | number;
