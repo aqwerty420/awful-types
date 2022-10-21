@@ -1,0 +1,19 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@typescript-to-lua/language-extensions': ^1.0.0
+  lua-types: ^2.13.0
+
+dependencies:
+  '@typescript-to-lua/language-extensions': 1.0.0
+  lua-types: 2.13.0
+
+packages:
+
+  /@typescript-to-lua/language-extensions/1.0.0:
+    resolution: {integrity: sha512-GtmhFqyg+txpGgGLM3mlS3R6AEG9MQhKALxxcbr6SBzg9u7YAXcPKqUBaBYd6nH+Pi/eQLcWz4BNOLhz8v4TjQ==}
+    dev: false
+
+  /lua-types/2.13.0:
+    resolution: {integrity: sha512-wra+mIPZlcbm8bYoM6QutEwTOAjZ9KyKMiaidGeZ+QJItIAK9hwG+1I6GCDKnW0T9E/Xv2IoTFtZwxQv4zAIJw==}
+    dev: false
