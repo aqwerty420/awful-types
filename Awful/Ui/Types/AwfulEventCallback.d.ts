@@ -1,0 +1,1 @@
+type AwfulEventCallback = () => void;

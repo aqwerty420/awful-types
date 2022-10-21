@@ -1,0 +1,3 @@
+interface IAwfulStringParams {
+  var: string;
+}

@@ -1,0 +1,1 @@
+type AwfulEventCallbackString = () => string;

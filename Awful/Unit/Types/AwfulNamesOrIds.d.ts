@@ -1,0 +1,1 @@
+type AwfulNamesOrIds = AwfulNameOrId[];

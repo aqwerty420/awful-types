@@ -1,0 +1,1 @@
+type AwfulUnitOrPosition = Unit | AwfulPosition;
