@@ -43,7 +43,7 @@ declare const enum CCType {
   polymorph = 'polymorph',
 }
 
-type AwfulSpellCallback = (spell: IAwfulSpell) => void;
+type AwfulSpellCallback = (this: void, spell: IAwfulSpell) => void;
 
 interface IAwfulSpellTraits {
   /**
