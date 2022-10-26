@@ -38,7 +38,7 @@ type AwfulAlertOptions = {
   duration?: number,
   fadeIn?: number,
   fadeOut?: number,
-  bgColor?: [number, number, number, number],
+  bgColor?: AwfulColor,
   imgX?: number,
   imgY?: number,
   imgScale?: number
