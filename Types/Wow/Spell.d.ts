@@ -18,6 +18,8 @@ declare function GetSpellCharges(
 /**
  * Returns spell info
  *
+ * @noSelf
+ * 
  * {@link https://wowpedia.fandom.com/wiki/API_GetSpellInfo}
  *
  * @param spellIdOrName Spell ID or Name. When passing a name requires the spell to be in your Spellbook

@@ -312,6 +312,14 @@ interface Unit {
    * Check if the unit creator.
    */
   readonly friend: boolean;
+    /**
+     * Check if unit is a player
+     */
+  readonly isPlayer: boolean;
+  /**
+   * Check if unit is a pet
+   */
+   readonly isPet: boolean;
   /**
    * The GUID of the object
    */
@@ -479,16 +487,19 @@ interface Unit {
    * Interrupt.
    */
   readonly casting9?: string;
-  readonly castId: number | boolean;
+  readonly castID: number | boolean;
   readonly castTarget?: Unit;
   readonly castPct: number;
   readonly castRemains: number;
+  readonly castTimeComplete: number;
+  readonly castint: boolean;
   /**
    * {@link https://wowpedia.fandom.com/wiki/API_UnitChannelInfo?so=search}
    */
   readonly channeling?: LuaMultiReturn<ChannelInfo>;
   readonly channelID: number | boolean;
   readonly channelRemains: number;
+  readonly channelTimeComplete: number;
   readonly gcdRemains: number;
   /**
    * spellID
@@ -727,9 +738,7 @@ interface Players extends Unit {
   readonly isHealer: boolean;
   readonly isMelee: boolean;
   readonly isRanged: boolean;
-  readonly isPet: boolean;
   readonly isTank: boolean;
-  readonly isPlayer: boolean;
   readonly race: string;
   /**
    * The class of the object.
