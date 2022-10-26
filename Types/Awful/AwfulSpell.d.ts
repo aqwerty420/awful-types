@@ -102,7 +102,7 @@ interface IAwfulSpellTraits {
    */
   ranged?: boolean;
   /**
-   * If :Cast should always force face the unit to cast, if not already facing.<br>
+   * If :Cast should always force face the unit to cast, if not already facing.
    * Not really recommended, since you can add face = true to :Cast options situationally when needed.
    */
   alwaysFace?: boolean;
@@ -146,6 +146,17 @@ interface IAwfulSpellTraits {
   circleSteps?: number;
 }
 
+interface IAwfulSpellOptions extends IAwfulSpellTraits {
+  /**
+   * stops moving to begin the cast
+   */
+  stopMoving?: boolean;
+  /**
+   * If :Cast should force face the unit to cast, if not already facing.
+   */
+  face?: boolean;
+}
+
 interface IAwfulSpell {
   (callback?: string): boolean;
   readonly baseCD: number;
@@ -174,7 +185,7 @@ interface IAwfulSpell {
   ): void;
   Cast(
     unitOrOptions?: Unit | IAwfulSpellTraits,
-    options?: IAwfulSpellTraits
+    options?: IAwfulSpellOptions
   ): boolean;
   Castable(
     unitOrOptions?: Unit | IAwfulSpellTraits,

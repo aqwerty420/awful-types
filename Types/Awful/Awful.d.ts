@@ -94,6 +94,7 @@ interface IAwful {
   readonly hasControl: number;
   readonly zone: string;
   readonly mapID: number;
+  readonly burst: boolean;
 
   // Lists
   /** Group that does not contains player */
