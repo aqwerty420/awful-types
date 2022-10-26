@@ -33,17 +33,16 @@ type AwfulUnitOrPosition = Unit | AwfulPosition;
 type AwfulUnknownEventCallback = (this: void, ...args: unknown[]) => void;
 
 type AwfulAlertOptions = {
-  message?: string,
-  texture?: number,
-  duration?: number,
-  fadeIn?: number,
-  fadeOut?: number,
-  bgColor?: AwfulColor,
-  imgX?: number,
-  imgY?: number,
-  imgScale?: number
+  message?: string;
+  texture?: number;
+  duration?: number;
+  fadeIn?: number;
+  fadeOut?: number;
+  bgColor?: AwfulColor;
+  imgX?: number;
+  imgY?: number;
+  imgScale?: number;
 };
-
 
 interface IAwful {
   NewSpell(
@@ -67,9 +66,9 @@ interface IAwful {
   inverse(this: void, rotation: number): number;
   Draw(this: void, callback: (draw: IAwfulDraw) => void): void;
   //Command(this: void, command: string, e: boolean): Command;
-  
-  alert(this: void, message: string, texture: number): boolean
-  alert(this: void, options: AwfulAlertOptions): boolean
+
+  alert(this: void, message: string, texture: number): boolean;
+  alert(this: void, options: AwfulAlertOptions): boolean;
 
   // Config
   DevMode: boolean;
@@ -100,9 +99,9 @@ interface IAwful {
   /** Group that does not contains player */
   readonly group: IAwfulList<Ally>;
   /** Group that contains player */
-  readonly fGroup:  IAwfulList<Ally>;
+  readonly fGroup: IAwfulList<Ally>;
   /** Group that contains player */
-  readonly fullGroup:  IAwfulList<Ally>;
+  readonly fullGroup: IAwfulList<Ally>;
   readonly enemies: IAwfulList<Unit>;
   readonly friends: IAwfulList<Ally>;
   readonly totems: IAwfulList<Unit>;

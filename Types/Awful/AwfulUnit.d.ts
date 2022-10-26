@@ -312,14 +312,14 @@ interface Unit {
    * Check if the unit creator.
    */
   readonly friend: boolean;
-    /**
-     * Check if unit is a player
-     */
+  /**
+   * Check if unit is a player
+   */
   readonly isPlayer: boolean;
   /**
    * Check if unit is a pet
    */
-   readonly isPet: boolean;
+  readonly isPet: boolean;
   /**
    * The GUID of the object
    */
