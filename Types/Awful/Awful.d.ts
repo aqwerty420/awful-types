@@ -30,7 +30,20 @@ type AwfulPosition = LuaMultiReturn<[number, number, number]>;
 
 type AwfulUnitOrPosition = Unit | AwfulPosition;
 
-type AwfulUnknownEventCallback = (...args: unknown[]) => void;
+type AwfulUnknownEventCallback = (this: void, ...args: unknown[]) => void;
+
+type AwfulAlertOptions = {
+  message?: string,
+  texture?: number,
+  duration?: number,
+  fadeIn?: number,
+  fadeOut?: number,
+  bgColor?: [number, number, number, number],
+  imgX?: number,
+  imgY?: number,
+  imgScale?: number
+};
+
 
 interface IAwful {
   NewSpell(
@@ -43,7 +56,7 @@ interface IAwful {
   addEventCallback(
     this: void,
     callbackFunction: AwfulUnknownEventCallback,
-    callbackEvent: string
+    callbackEvent?: string
   ): void;
   immerseOL(this: void, list: Unit[]): void;
   addUpdateCallback(
@@ -54,6 +67,9 @@ interface IAwful {
   inverse(this: void, rotation: number): number;
   Draw(this: void, callback: (draw: IAwfulDraw) => void): void;
   //Command(this: void, command: string, e: boolean): Command;
+  
+  alert(this: void, message: string, texture: number): boolean
+  alert(this: void, options: AwfulAlertOptions): boolean
 
   // Config
   DevMode: boolean;
@@ -80,9 +96,14 @@ interface IAwful {
   readonly mapID: number;
 
   // Lists
+  /** Group that does not contains player */
   readonly group: IAwfulList<Ally>;
+  /** Group that contains player */
+  readonly fGroup:  IAwfulList<Ally>;
+  /** Group that contains player */
+  readonly fullGroup:  IAwfulList<Ally>;
   readonly enemies: IAwfulList<Unit>;
-  readonly friends: IAwfulList<Unit>;
+  readonly friends: IAwfulList<Ally>;
   readonly totems: IAwfulList<Unit>;
   readonly seeds: IAwfulList<Unit>;
   readonly units: IAwfulList<Unit>;
