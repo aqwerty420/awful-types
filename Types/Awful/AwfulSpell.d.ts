@@ -185,7 +185,7 @@ interface IAwfulSpellTraits {
     * 
     * you must be extremely careful what you do inside of it to avoid performance issues
   */
-  filter?: (obj: Unit | Ally | Players, estDist: number, castPosition: [number, number, number]) => boolean | string;
+  filter?: (obj: Unit | Ally | Players, estDist: number, castPosition: AwfulPosition) => boolean | string;
   /** 
    * AOE ONLY\
    *  the maximum acceptable filter hit count to still cast the spell (default: 0)
