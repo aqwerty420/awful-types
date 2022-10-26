@@ -1,3 +1,5 @@
+/** @noSelfInFile **/
+
 /**
  * Returns info for an action on the pet action bar
  *

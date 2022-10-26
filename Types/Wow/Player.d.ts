@@ -1,3 +1,5 @@
+/** @noSelfInFile **/
+
 /**
  * Targets the specified unit
  *

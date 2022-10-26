@@ -1,3 +1,5 @@
+/** @noSelfInFile **/
+
 /**
  * Returns cooldown info for an item ID
  *
