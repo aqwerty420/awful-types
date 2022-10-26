@@ -43,7 +43,7 @@ declare const enum CCType {
   polymorph = 'polymorph',
 }
 
-type AwfulSpellCallback = (this: void, spell: IAwfulSpell, ...args:any) => void;
+type AwfulSpellCallback = (this: void, spell: IAwfulSpell, ...args: any) => void;
 
 interface IAwfulSpellTraits {
   /**
@@ -139,11 +139,77 @@ interface IAwfulSpellTraits {
    */
   slow?: boolean;
   ignoreGCD?: boolean;
-  movePredTime?: number;
+  /** 
+   * AOE ONLY\
+   *  minimum offset from given pos (default: 0)
+  */
   offsetMin?: number;
+  /**  
+   * AOE ONLY\
+   * maximum offset from given pos (default: radius)
+  */
   offsetMax?: number;
+  /** 
+   * AOE ONLY\
+   * Number of steps between min and max dist (default: 24) ...btw, 
+   * the smallest allowable distance step is 0.5yd - short min/max 
+   * offset deficits with lots of unnecessary distance steps will 
+   * be ignored for obvious performance reasons
+  */
   distanceSteps?: number;
+  /**  
+   * AOE ONLY\
+   * number of positions to examine in a circle around each distance step
+   *  (default: 48) ...higher = more performance hungry but higher accuracy
+   *  and precision 
+  */
   circleSteps?: number;
+  /** 
+   * AOE ONLY\
+   * if passed an object (or filter), will perform calculations using 
+   * predicted position of object(s) based on linear movement over 
+   * this duration instead of current position
+  */
+  movePredTime?: number;
+  /**
+   * AOE ONLY\
+   * when sort is configured, you can control the final sorting of valid 
+   * cast positions, of which it will choose the top in the list.
+  */
+  sort?: (...args: any) => boolean;
+  /** 
+   * AOE ONLY\
+   * calls this function for all OM units at each simulated cast position 
+    * that still hits the primary unit/position to keep a count of filter hits.
+    *  searches for a cast position that is below your maxHit threshold.
+    * 
+    * you must be extremely careful what you do inside of it to avoid performance issues
+  */
+  filter?: (obj: Unit | Ally | Players, estDist: number, castPosition: [number, number, number]) => boolean | string;
+  /** 
+   * AOE ONLY\
+   *  the maximum acceptable filter hit count to still cast the spell (default: 0)
+  */
+  maxHit?: number;
+  /** 
+   * AOE ONLY\
+   * do not add enemies to units table for filter function - will only check friends. 
+   * very important to add this if enemies are not relevant to your filter function.
+  */
+  ignoreEnemies?: boolean;
+  /** 
+   * AOE ONLY\
+   * do not add friends to units table for filter function - will only check enemies.
+   *  very important to add this if friends are not relevant to your filter function.
+  */
+  ignoreFriends?: boolean;
+  /** 
+   * AOE ONLY\
+   *  iterative array of awful objects, if you want to explicitly pass a list of objects
+   *  to filter through (keep in mind, you should only pass this trait at cast time, not
+   *  when initializing new spell object, otherwise the list will become stale)
+  */
+  units?: IAwfulList<Unit | Players | Ally>;
 }
 
 interface IAwfulSpellOptions extends IAwfulSpellTraits {
