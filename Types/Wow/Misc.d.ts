@@ -1,3 +1,5 @@
+/** @noSelfInFile **/
+
 /**
  * World of Warcraft Retail
  */
@@ -45,8 +47,6 @@ type HyperLink = string;
 /**
  * Returns the system uptime of your computer in seconds, with millisecond precision
  *
- * @noSelf
- * 
  * {@link https://wowpedia.fandom.com/wiki/API_GetTime}
  */
 declare function GetTime(): number;

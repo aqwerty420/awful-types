@@ -1,3 +1,5 @@
+/** @noSelfInFile **/
+
 /**
  * True if the unit is in combat
  *
