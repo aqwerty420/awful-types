@@ -752,6 +752,8 @@ interface Players extends Unit {
    * The unit's covenant or false if it doesn't have one.
    */
   readonly covenant: Covenants | false;
+  /** Max Velocity of moving unit */
+  readonly speed2: number;
 }
 
 interface Ally extends Players {

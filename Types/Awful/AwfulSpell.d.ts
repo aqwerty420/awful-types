@@ -48,7 +48,7 @@ declare const enum CCType {
 type AwfulSpellCallback = (
   this: void,
   spell: IAwfulSpell,
-  ...args: any
+  ...args: any[]
 ) => void;
 
 interface IAwfulSpellTraits {
@@ -182,7 +182,7 @@ interface IAwfulSpellTraits {
    * when sort is configured, you can control the final sorting of valid
    * cast positions, of which it will choose the top in the list.
    */
-  sort?: (...args: any) => boolean;
+  sort?: AwfulListSortFilter<any>;
   /**
    * AOE ONLY\
    * calls this function for all OM units at each simulated cast position
@@ -234,7 +234,7 @@ interface IAwfulSpellOptions extends IAwfulSpellTraits {
 }
 
 interface IAwfulSpell {
-  (callback?: string): boolean;
+  (this: void, callback?: string): boolean;
   readonly baseCD: number;
   readonly castTime: number;
   readonly cd: number;
