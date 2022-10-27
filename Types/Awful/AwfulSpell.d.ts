@@ -255,21 +255,16 @@ interface IAwfulSpell {
   readonly usable: boolean;
   used(this: void, time: number): boolean;
   inRange(this: void, unit: Unit): boolean;
-  Callback(
-    funcOrKey: AwfulSpellCallback | string,
-    func?: AwfulSpellCallback
-  ): void;
-  Cast(
-    unitOrOptions?: Unit | IAwfulSpellTraits,
-    options?: IAwfulSpellOptions
-  ): boolean;
-  Castable(
-    unitOrOptions?: Unit | IAwfulSpellTraits,
-    options?: IAwfulSpellTraits
-  ): boolean;
-  AoECast(xOrUnit: number | Unit, y?: number, z?: number): boolean;
+  Callback(key: string, func: AwfulSpellCallback): void;
+  Callback(func: AwfulSpellCallback): void;
+  Cast(options?: IAwfulSpellOptions): boolean;
+  Cast(unit: Unit, options?: IAwfulSpellOptions): boolean;
+  Castable(options?: IAwfulSpellTraits): boolean;
+  Castable(unit: Unit, options?: IAwfulSpellTraits): boolean;
+  AoECast(x: number, y: number, z: number): boolean;
+  AoECast(unit: Unit): boolean;
   SmartAoE(
-    posOrUnit: AwfulUnitOrPosition,
+    posOrUnit: Unit | AwfulPosition,
     options?: IAwfulSpellTraits
   ): boolean;
   ClearCache(): void;

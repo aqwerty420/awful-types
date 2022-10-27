@@ -28,8 +28,6 @@ declare const enum AwfulSpecs {
 
 type AwfulPosition = LuaMultiReturn<[number, number, number]>;
 
-type AwfulUnitOrPosition = Unit | AwfulPosition;
-
 type AwfulUnknownEventCallback = (this: void, ...args: unknown[]) => void;
 
 type AwfulAlertOptions = {
