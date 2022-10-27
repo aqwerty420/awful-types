@@ -1,6 +1,7 @@
-type AwfulListFilter<T> = (unit: T) => boolean;
+type AwfulListFilter<T> = (this: void, unit: T) => boolean;
 
 type AwfulListLoopCallback<T> = (
+  this: void,
   unit: T,
   index: number,
   uptime: number
@@ -8,9 +9,9 @@ type AwfulListLoopCallback<T> = (
 
 type AwfulListReturn<T> = LuaMultiReturn<[number, number, Array<T>]>;
 
-type AwfulListSortFilter<T> = (a: T, b: T) => boolean;
+type AwfulListSortFilter<T> = (this: void, a: T, b: T) => boolean;
 
-type AwfulListStompCallback<T> = (unit: T, uptime: number) => void;
+type AwfulListStompCallback<T> = (this: void, unit: T, uptime: number) => void;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
