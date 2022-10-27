@@ -2,9 +2,9 @@ type AwfulColor = [number, number, number, number];
 
 type AwfulCommandCallback = (this: void, msg: string) => void;
 
-type AwfulEventCallback = () => void;
+type AwfulEventCallback = (this: void) => void;
 
-type AwfulEventCallbackString = () => string;
+type AwfulEventCallbackString = (this: void) => string;
 
 type AwfulSettings = LuaTable<string, unknown>;
 
