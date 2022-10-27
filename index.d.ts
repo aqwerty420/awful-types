@@ -9,6 +9,7 @@
 /// <reference path="Types/Awful/AwfulUnit.d.ts" />
 /// <reference path="Types/Awful/IObject.d.ts" />
 /// <reference path="Types/Awful/Item.d.ts" />
+/// <reference path="Types/Awful/ITrigger.d.ts" />
 
 /// <reference path="Types/Unlocker/Unlocker.d.ts" />
 
