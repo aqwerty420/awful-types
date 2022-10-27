@@ -24,3 +24,12 @@ declare function StartAttack(): void;
  * {@link https://wowpedia.fandom.com/wiki/API_AttackTarget}
  */
 declare function AttackTarget(): void;
+
+/**
+ * Cancel Unit Buff - Must be under player control
+ * {@link https://wowpedia.fandom.com/wiki/API_CancelUnitBuff}
+ * @param unit UnitId - The unit to cancel the buff from, must be under the player's control.
+ * @param buffIndex index of the buff to cancel, ascending from 1.
+ */
+
+declare function CancelUnitBuff(unit: string, buffIndex: string): void;
