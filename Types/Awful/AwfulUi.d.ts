@@ -129,6 +129,8 @@ interface IAwfulContainsTab {
 interface IAwfulStatusFrame {
   Toggle(params: IAwfulToggleParams): void;
   String(params: IAwfulStringParams): void;
+  Hide(): void;
+  Show(): void;
 }
 
 interface IAwfulGUi extends IAwfulContainsTab {
