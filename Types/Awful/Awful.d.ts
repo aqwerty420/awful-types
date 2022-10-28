@@ -44,7 +44,11 @@ type AwfulAlertOptions = {
 
 declare interface IAwfulProtected {
   RunMacroText(this: void, text: string): void;
-  PetAttack(this: void): void;
+  //TargetUnit: typeof TargetUnit;
+  //UseInventoryItem: typeof UseInventoryItem;
+  PetAttack: typeof PetAttack;
+  //AttackTarget: typeof AttackTarget;
+  //UseItemByName: typeof UseItemByName;
 }
 
 interface IAwful {
