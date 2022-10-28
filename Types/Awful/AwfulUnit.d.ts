@@ -9,14 +9,12 @@ type CCInfo = [number, string, number, string, number];
 
 type CCInfoList = readonly CCInfo[];
 
-/*
 declare const enum Covenants {
   kyrian = 'Kyrian',
   necrolord = 'Necrolord',
   nightFae = 'Night Fae',
   venthyr = 'Venthyr',
 }
-*/
 
 interface MovingParms {
   angle?: number;
@@ -753,7 +751,7 @@ interface Players extends Unit {
   /**
    * The unit's covenant or false if it doesn't have one.
    */
-  //readonly covenant: Covenants | false;
+  readonly covenant: Covenants | false;
   /** Max Velocity of moving unit */
   readonly speed2: number;
 
@@ -778,7 +776,7 @@ interface Player extends Ally {
    * @returns False if the player doesn't have the talent, or the rank of the talent if the player has it.
    */
   hasTalent(this: void, talent: string | number): boolean | number;
-  //hasConduit(this: void, conduitnameOrId: AwfulNameOrId): boolean;
+  hasConduit(this: void, conduitnameOrId: AwfulNameOrId): boolean;
   face(this: void, unitOrdirection?: Unit | number): void;
   /**
    * Checks to see if x,y,z position is in los of player
