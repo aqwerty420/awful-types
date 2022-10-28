@@ -180,7 +180,7 @@ interface Unit {
    *
    * @param unit The unit to check
    */
-  distanceToLiteral(this: void, unit: Unit): number;
+  distanceToLiteral(this: void, unitOrPosition: AwfulUnitOrPosition): number;
 
   /**
    * Checks if the object is facing another object [at a 180 degree angle by default - the required facing angle to cast spells]
@@ -754,6 +754,8 @@ interface Players extends Unit {
   readonly covenant: Covenants | false;
   /** Max Velocity of moving unit */
   readonly speed2: number;
+
+  readonly castingTarget: Players;
 }
 
 interface Ally extends Players {
@@ -772,6 +774,10 @@ interface Ally extends Players {
 interface Player extends Ally {
   hasConduit(this: void, conduitnameOrId: AwfulNameOrId): boolean;
   face(this: void, unitOrdirection?: Unit | number): void;
+  /**
+   * Checks to see if x,y,z position is in los of player
+   */
+  losCoordsLiteral(this: void, position: AwfulPosition): boolean;
   readonly specialization: AwfulSpecs;
   readonly mainHandEnchant: boolean;
   readonly offHandEnchant: boolean;

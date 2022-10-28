@@ -42,6 +42,11 @@ type AwfulAlertOptions = {
   imgScale?: number;
 };
 
+declare interface IAwfulProtected {
+  RunMacroText(this: void, text: string): void;
+  PetAttack(this: void): void;
+}
+
 interface IAwful {
   NewSpell(
     this: void,
@@ -62,7 +67,10 @@ interface IAwful {
     onRoutineRun?: boolean
   ): void;
   inverse(this: void, rotation: number): number;
-  Draw(this: void, callback: (draw: IAwfulDraw) => void): void;
+  Draw(
+    this: void,
+    callback: (this: void, draw: IAwfulDrawer) => void
+  ): IAwfulDraw;
   //Command(this: void, command: string, e: boolean): Command;
 
   alert(this: void, message: string, texture: number): boolean;
@@ -92,7 +100,7 @@ interface IAwful {
   readonly zone: string;
   readonly mapID: number;
   readonly burst: boolean;
-
+  readonly enabled: boolean;
   // Lists
   /** Group that does not contains player */
   readonly group: IAwfulList<Ally>;
@@ -110,6 +118,8 @@ interface IAwful {
   readonly explosives: IAwfulList<Unit>;
   readonly shades: IAwfulList<Unit>;
   readonly objects: IAwfulList<IObject>;
+  readonly triggers: IAwfulList<ITrigger>;
+  readonly protected: IAwfulProtected;
 }
 
 declare const awful: IAwful;

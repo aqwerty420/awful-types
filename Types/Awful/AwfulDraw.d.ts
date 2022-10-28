@@ -1,4 +1,13 @@
 interface IAwfulDraw {
+  this: IAwfulDraw;
+  enabled: boolean;
+  Enable(this: IAwfulDraw): boolean;
+  Disable(this: IAwfulDraw): boolean;
+}
+
+interface IAwfulDrawer {
+  this: IAwfulDrawer;
+  level: string;
   SetColor(r: number, g: number, b: number, a: number): void;
   SetColorRaw(r: number, g: number, b: number, a: number): void;
   SetWidth(width: number): void;
@@ -40,9 +49,16 @@ interface IAwfulDraw {
   ): void;
   Line2D(sx: number, sy: number, ex: number, ey: number): void;
   Circle(x: number, y: number, z: number, radius: number, steps?: number): void;
+  FilledCircle(
+    x: number,
+    y: number,
+    z: number,
+    radius: number,
+    steps?: number
+  ): void;
   //Array(vectors, x, y, z, rotationX, rotationY, rotationZ)
   Text(text: string, font: string, x: number, y: number, z: number): void;
-  //Texture(config, x, y, z, alphaA)
+  Texture(texture: IAwfulDrawTexture, x: number, y: number, z: number): void;
   Arc(
     x: number,
     y: number,
@@ -59,4 +75,11 @@ interface IAwfulDraw {
     l: number,
     rotation: number
   ): void;
+}
+interface IAwfulDrawTexture {
+  /* Use wow api GetSpellTexture to get texture  */
+  texture: string;
+  width: number;
+  height: number;
+  alpha: number;
 }

@@ -14,6 +14,7 @@
  * @return 4 - chargeModRate - The rate at which the charge cooldown widget's animation should be updated
  */
 declare function GetSpellCharges(
+  this: void,
   spellIdOrName: number | string
 ): LuaMultiReturn<[number, number, number, number, number]>;
 
@@ -38,3 +39,52 @@ declare function GetSpellInfo(
 ): LuaMultiReturn<
   [string, string, number, number, number, number, number, number]
 >;
+/**
+ *
+ * {@link https://wowpedia.fandom.com/wiki/API_GetSpellTexture}
+ *
+ * @param spellIdOrName Spell ID or Name. When passing a name requires the spell to be in your Spellbook.
+ * @param index Spellbook slot index, ranging from 1 through the total number of spells across all tabs and pages.
+ * @param bookType BOOKTYPE_SPELL or BOOKTYPE_PET depending on if you wish to query the player or pet spellbook.
+ * Internally the game only tests if this is equal to "pet" and treats any other string value as "spell".
+ *
+ */
+declare function GetSpellTexture(
+  this: void,
+  spellIdOrName: number | string
+): string;
+declare function GetSpellTexture(
+  this: void,
+  index: string,
+  bookType: 'BOOKTYPE_SPELL' | 'BOOKTYPE_PET'
+): string;
+
+/**
+ *
+ * Get information about a spell's Autocast.
+ *
+ * {@link https://wowpedia.fandom.com/wiki/API_GetSpellAutocast}
+ *
+ * @param spellNameOrId  Spell ID or Name. When passing a name requires the spell to be in your Spellbook.
+ * @param BOOKTYPE_SPELL or BOOKTYPE_PET depending on if you wish to query the player or pet spellbook.
+ * Internally the game only tests if this is equal to "pet" and treats any other string value as "spell".
+ */
+declare function GetSpellAutocast(
+  this: void,
+  spellNameOrId: string,
+  bookType?: 'BOOKTYPE_SPELL' | 'BOOKTYPE_PET'
+): LuaMultiReturn<[number, number]>;
+
+/**
+ *
+ * This toggles the state of the Autocast spell.
+ *
+ * @param spellNameOrId Spell ID or Name. When passing a name requires the spell to be in your Spellbook.
+ * @param BOOKTYPE_SPELL or BOOKTYPE_PET depending on if you wish to query the player or pet spellbook.
+ * Internally the game only tests if this is equal to "pet" and treats any other string value as "spell".
+ */
+declare function ToggleSpellAutocast(
+  this: void,
+  spellNameOrId: string,
+  bookType?: 'BOOKTYPE_SPELL' | 'BOOKTYPE_PET'
+): void;
