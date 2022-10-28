@@ -180,7 +180,7 @@ interface Unit {
    *
    * @param unit The unit to check
    */
-  distanceToLiteral(this: void, unitOrPosition: AwfulUnitOrPosition): number;
+  distanceToLiteral(this: void, unitOrPosition: Unit | AwfulPosition): number;
 
   /**
    * Checks if the object is facing another object [at a 180 degree angle by default - the required facing angle to cast spells]
