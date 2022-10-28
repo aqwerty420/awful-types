@@ -67,7 +67,7 @@ interface IAwful {
   immerseOL(this: void, list: Unit[]): void;
   addUpdateCallback(
     this: void,
-    callback: () => void,
+    callback: (this: void) => void,
     onRoutineRun?: boolean
   ): void;
   inverse(this: void, rotation: number): number;
@@ -77,8 +77,13 @@ interface IAwful {
   ): IAwfulDraw;
   //Command(this: void, command: string, e: boolean): Command;
 
-  alert(this: void, message: string, texture: number): boolean;
-  alert(this: void, options: AwfulAlertOptions): boolean;
+  alert(this: void, message?: string, texture?: number): boolean;
+  alert(this: void, options?: AwfulAlertOptions): boolean;
+
+  hookSpellCasts(
+    this: void,
+    callback: (this: void, spell?: IAwfulSpell, key?: string) => void
+  ): void;
 
   // Config
   DevMode: boolean;
