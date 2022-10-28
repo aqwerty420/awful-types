@@ -31,3 +31,9 @@ declare const enum PetModes {
  * {@link https://wowpedia.fandom.com/wiki/API_PetAttack}
  */
 declare function PetAttack(): void;
+
+/**
+ * Instruct your pet to follow you.
+ * {@link https://wowpedia.fandom.com/wiki/API_PetFollow}
+ */
+declare function PetFollow(): void;
