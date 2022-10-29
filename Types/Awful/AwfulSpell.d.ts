@@ -234,7 +234,7 @@ interface IAwfulSpellOptions extends IAwfulSpellTraits {
 }
 
 interface IAwfulSpell {
-  (this: void, callback?: string): boolean;
+  (this: void, callback?: string, ...args: unknown[]): boolean;
   readonly baseCD: number;
   readonly castTime: number;
   readonly cd: number;
