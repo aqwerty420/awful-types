@@ -759,7 +759,7 @@ interface Players extends Unit {
 }
 
 interface Ally extends Players {
-  readonly spec: AwfulSpecs;
+  readonly spec: AwfulClassSpecs;
   /**
    * Can only be used on players who are in your party and visible
    */
@@ -782,7 +782,7 @@ interface Player extends Ally {
    * Checks to see if x,y,z position is in los of player
    */
   losCoordsLiteral(this: void, position: AwfulPosition): boolean;
-  readonly specialization: AwfulSpecs;
+  readonly specialization: AwfulClassSpecs;
   readonly mainHandEnchant: boolean;
   readonly offHandEnchant: boolean;
   readonly mounted: boolean;

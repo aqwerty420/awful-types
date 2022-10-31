@@ -26,6 +26,43 @@ declare const enum AwfulSpecs {
   Third = 3,
 }
 
+declare const enum AwfulClassSpecs {
+  blood = 'Blood',
+  frost = 'Frost',
+  unholy = 'Unholy',
+  havoc = 'Havoc',
+  vengeance = 'Vengeance',
+  balance = 'Balance',
+  feral = 'Feral',
+  guardian = 'Guardian',
+  restoration = 'Restoration',
+  beastMastery = 'Beast Mastery',
+  marksmanship = 'Marksmanship',
+  survival = 'Survival',
+  arcane = 'Arcane',
+  fire = 'Fire',
+  brewmaster = 'Brewmaster',
+  mistweaver = 'Mistweaver',
+  windwalker = 'Windwalker',
+  holy = 'Holy',
+  protection = 'Protection',
+  retribution = 'Retribution',
+  discipline = 'Discipline',
+  shadow = 'Shadow',
+  assassination = 'Assassination',
+  outlaw = 'Outlaw',
+  subtlety = 'Subtlety',
+  elemental = 'Elemental',
+  enhancement = 'Enhancement',
+  affliction = 'Affliction',
+  demonology = 'Demonology',
+  destruction = 'Destruction',
+  arms = 'Arms',
+  fury = 'Fury',
+  devastation = 'Devastation',
+  preservation = 'Preservation',
+}
+
 type AwfulPosition = LuaMultiReturn<[number, number, number]>;
 
 type AwfulUnknownEventCallback = (this: void, ...args: unknown[]) => void;
