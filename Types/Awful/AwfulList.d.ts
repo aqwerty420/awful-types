@@ -32,8 +32,9 @@ interface IAwfulList<T> extends Array<T> {
     distance: number,
     criteria?: AwfulListFilter<T>
   ): AwfulListReturn<T>;
-  filter(this: void, criteria: AwfulListFilter<T>): Array<T>;
+  filter(this: void, criteria: AwfulListFilter<T>): IAwfulList<T>;
   loop(this: void, callback: AwfulListLoopCallback<T>): void;
   stomp(this: void, callback: AwfulListStompCallback<T>): void;
   sort(this: void, criteria: AwfulListSortFilter<T>): void;
+  within(this: void, range: number): IAwfulList<T>;
 }
