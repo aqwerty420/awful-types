@@ -203,6 +203,11 @@ interface IAwfulSpellTraits {
   maxHit?: number;
   /**
    * AOE ONLY\
+   *  the minimum acceptable filter hit count to still cast the spell (default: 0)
+   */
+  minHit?: number;
+  /**
+   * AOE ONLY\
    * do not add enemies to units table for filter function - will only check friends.
    * very important to add this if enemies are not relevant to your filter function.
    */
