@@ -16,5 +16,17 @@
  * @return 8 - instanceGroupSize - The number of players within your instance group.
  * @return 9 - LfgDungeonID - The LfgDungeonID for the current instance group, nil if not in a dungeon finder group.
  */
-declare function GetInstanceInfo(): LuaMultiReturn<[string, string, number, string, number, number, boolean, number, number, number]>;
-
+declare function GetInstanceInfo(): LuaMultiReturn<
+  [
+    string,
+    string,
+    number,
+    string,
+    number,
+    number,
+    boolean,
+    number,
+    number,
+    number
+  ]
+>;
