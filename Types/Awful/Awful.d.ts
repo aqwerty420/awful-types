@@ -93,7 +93,11 @@ declare interface IAwfulProtected {
 }
 
 interface IAwfulPath extends LuaMultiReturn<[AwfulPosition[], number]> {
-  simplify(this: void, tolerance: number, highestQuality: number): AwfulPathOrFalse;
+  simplify(
+    this: void,
+    tolerance: number,
+    highestQuality: number
+  ): AwfulPathOrFalse;
   draw(this: void): IAwfulDraw;
 }
 
@@ -131,7 +135,7 @@ interface IAwful {
     x: number,
     y: number,
     z: number,
-    target: AwfulPosition,
+    target: AwfulPosition
   ): AwfulPathOrFalse;
 
   NewSpell(
