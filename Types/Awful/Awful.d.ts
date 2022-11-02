@@ -89,6 +89,42 @@ declare interface IAwfulProtected {
 }
 
 interface IAwful {
+  // path if using two AwfulPositions
+  path(
+    this: void,
+    player: AwfulPosition,
+    target: AwfulPosition
+  ): LuaMultiReturn<[AwfulPosition[], number]> | false;
+
+  // path if using two coord sets
+  path(
+    this: void,
+    x: number,
+    y: number,
+    z: number,
+    x2: number,
+    y2: number,
+    z2: number
+  ): LuaMultiReturn<[AwfulPosition[], number]> | false;
+
+  // path if using 1 AwfulPosition and 1 Coord set
+  path(
+    this: void,
+    player: AwfulPosition,
+    x2: number,
+    y2: number,
+    z2: number
+  ): LuaMultiReturn<[AwfulPosition[], number]> | false;
+
+  // path if using 1 coord set and 1 AwfulPosition
+  path(
+    this: void,
+    x: number,
+    y: number,
+    z: number,
+    target: AwfulPosition,
+  ): LuaMultiReturn<[AwfulPosition[], number]> | false;
+
   NewSpell(
     this: void,
     spellId: number | number[],
