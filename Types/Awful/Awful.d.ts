@@ -67,6 +67,10 @@ type AwfulPosition = LuaMultiReturn<[number, number, number]>;
 
 type AwfulUnknownEventCallback = (this: void, ...args: unknown[]) => void;
 
+type AwfulPath = LuaMultiReturn<[IAwfulPath, number]>;
+
+type AwfulPathOrFalse = IAwfulPath | false;
+
 type AwfulAlertOptions = {
   message?: string;
   texture?: number;
@@ -88,7 +92,48 @@ declare interface IAwfulProtected {
   //UseItemByName: typeof UseItemByName;
 }
 
+interface IAwfulPath extends LuaMultiReturn<[AwfulPosition[], number]> {
+  simplify(this: void, tolerance: number, highestQuality: number): AwfulPathOrFalse;
+  draw(this: void): IAwfulDraw;
+}
+
 interface IAwful {
+  // path if using two AwfulPositions
+  path(
+    this: void,
+    player: AwfulPosition,
+    target: AwfulPosition
+  ): AwfulPathOrFalse;
+
+  // path if using two coord sets
+  path(
+    this: void,
+    x: number,
+    y: number,
+    z: number,
+    x2: number,
+    y2: number,
+    z2: number
+  ): AwfulPathOrFalse;
+
+  // path if using 1 AwfulPosition and 1 Coord set
+  path(
+    this: void,
+    player: AwfulPosition,
+    x2: number,
+    y2: number,
+    z2: number
+  ): AwfulPathOrFalse;
+
+  // path if using 1 coord set and 1 AwfulPosition
+  path(
+    this: void,
+    x: number,
+    y: number,
+    z: number,
+    target: AwfulPosition,
+  ): AwfulPathOrFalse;
+
   NewSpell(
     this: void,
     spellId: number | number[],
