@@ -99,6 +99,7 @@ interface IAwfulPath extends LuaMultiReturn<[AwfulPosition[], number]> {
     highestQuality: number
   ): AwfulPathOrFalse;
   draw(this: void): IAwfulDraw;
+  follow(this: void): void;
 }
 
 interface IAwful {
