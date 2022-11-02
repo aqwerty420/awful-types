@@ -95,6 +95,7 @@ declare interface IAwfulProtected {
 interface IAwfulPath extends LuaMultiReturn<[AwfulPosition[], number]> {
   simplify(this: void, tolerance: number, highestQuality: number): AwfulPathOrFalse;
   draw(this: void): IAwfulDraw;
+  follow(this: void): void;
 }
 
 interface IAwful {
