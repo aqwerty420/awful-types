@@ -1,3 +1,5 @@
+/** @noSelfInFile **/
+
 declare namespace C_QuestLog {
   /**
    * Returns whether the supplied quest in the quest log is complete
