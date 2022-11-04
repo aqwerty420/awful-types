@@ -33,3 +33,21 @@ declare function AttackTarget(): void;
  */
 
 declare function CancelUnitBuff(unit: string, buffIndex: string): void;
+
+/**
+ * Returns information on a glyph socket.
+ *
+ * {@link https://wowpedia.fandom.com/wiki/API_GetGlyphSocketInfo}
+ *
+ * @param socketId The socket index to query, ranging from 1 through NUM_GLYPH_SLOTS.
+ * @param talentGroup Optional, ranging from 1 (primary) to 2 (secondary) the talent group to query. Defaults to the currently active talent group.
+ *
+ * @return 0 - enabled - True if the socket has a glyph inserted.
+ * @return 1 - glyphType - The type of glyph accepted by this socket. Either GLYPHTYPE_MAJOR or GLYPHTYPE_MINOR.
+ * @return 2 - glyphSpellID - The spell ID of the socketed glyph.
+ * @return 3 - iconFile - The file ID of the sigil icon associated with the socketed glyph.
+ */
+ declare function GetGlyphSocketInfo(
+  socketId: number,
+  talentGroup?: number
+): LuaMultiReturn<[boolean, number, number?, number?]>;
