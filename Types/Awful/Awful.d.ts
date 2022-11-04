@@ -176,6 +176,8 @@ interface IAwful {
     callback: (this: void, spell?: IAwfulSpell, key?: string) => void
   ): void;
 
+  FightRemains(this: void): number;
+
   // Config
   DevMode: boolean;
   ttd_enabled: boolean;
