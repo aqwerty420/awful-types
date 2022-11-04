@@ -19,3 +19,4 @@
 /// <reference path="Types/Wow/Player.d.ts" />
 /// <reference path="Types/Wow/Spell.d.ts" />
 /// <reference path="Types/Wow/Unit.d.ts" />
+/// <reference path="Types/Wow/Quest.d.ts" />

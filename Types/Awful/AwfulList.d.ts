@@ -7,7 +7,7 @@ type AwfulListLoopCallback<T> = (
   uptime: number
 ) => void;
 
-type AwfulListReturn<T> = LuaMultiReturn<[number, number, Array<T>]>;
+type AwfulListReturn<T> = LuaMultiReturn<[number, number, IAwfulList<T>]>;
 
 type AwfulListSortFilter<T> = (this: void, a: T, b: T) => boolean;
 
