@@ -33,3 +33,21 @@ declare function AttackTarget(): void;
  */
 
 declare function CancelUnitBuff(unit: string, buffIndex: string): void;
+
+declare const enum RuneType {
+  RUNETYPE_BLOOD = 1,
+  RUNETYPE_CHROMATIC = 2,
+  RUNETYPE_FROST = 3,
+  RUNETYPE_DEATH = 4,
+}
+
+/**
+ * Gets the type of rune for a given rune ID.
+ *
+ * {@link https://wowpedia.fandom.com/wiki/API_GetRuneType}
+ *
+ * @param id The rune's id. A number between 1 and 6 denoting which rune to be queried.
+ *
+ * @return 0 - runeType - The type of rune that it is.
+ */
+declare function GetRuneType(id: number): RuneType;
