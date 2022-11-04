@@ -196,6 +196,7 @@ declare const enum DispelType {
   Disease = 'Disease',
   Magic = 'Magic',
   Poison = 'Poison',
+  Enrage = '',
 }
 
 /**
