@@ -51,3 +51,15 @@ declare function CancelUnitBuff(unit: string, buffIndex: string): void;
   socketId: number,
   talentGroup?: number
 ): LuaMultiReturn<[boolean, number, number?, number?]>;
+
+/**
+ * Returns a link to a glyph specified by index and talent group.
+ *
+ * {@link https://wowpedia.fandom.com/wiki/API_GetGlyphLink}
+ *
+ * @param index Ranging from 1 to 6, the glyph's index. See Notes for more information.
+ * @param talentGroup Optional, ranging from 1 (primary) to 2 (secondary) the talent group to query. Defaults to the currently active talent group.
+ *
+ * @return 0 - link - The link to the glyph if it's populated, otherwise empty string.
+ */
+declare function GetGlyphLink(socketId: number, talentGroup?: number): string;
