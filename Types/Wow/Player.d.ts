@@ -51,3 +51,18 @@ declare const enum RuneType {
  * @return 0 - runeType - The type of rune that it is.
  */
 declare function GetRuneType(id: number): RuneType;
+
+/**
+ * Returns the Death Knight's cooldown info for the specified rune.
+ *
+ * {@link https://wowpedia.fandom.com/wiki/API_GetRuneCooldown}
+ *
+ * @param id The rune index, ranging between 1 and 6.
+ *
+ * @return 0 - start - The value of GetTime() when the rune's cooldown began (or 0 if the rune is off cooldown).
+ * @return 1 - duration - The duration of the rune's cooldown (regardless of whether or not it's on cooldown).
+ * @return 2 - runeReady - Whether or not the rune is off cooldown. True if ready, false if not.
+ */
+ declare function GetRuneCooldown(
+  id: number
+): LuaMultiReturn<[number, number, boolean]>;
