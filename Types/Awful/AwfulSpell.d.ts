@@ -192,7 +192,7 @@ interface IAwfulSpellTraits {
    * you must be extremely careful what you do inside of it to avoid performance issues
    */
   filter?: (
-    obj: Unit | Ally | Players,
+    obj: IAwfulUnit | IAwfulAlly | IAwfulPlayers,
     estDist: number,
     castPosition: AwfulPosition
   ) => boolean | string;
@@ -224,7 +224,7 @@ interface IAwfulSpellTraits {
    *  to filter through (keep in mind, you should only pass this trait at cast time, not
    *  when initializing new spell object, otherwise the list will become stale)
    */
-  units?: IAwfulList<Unit | Players | Ally>;
+  units?: IAwfulList<IAwfulUnit | IAwfulPlayers | IAwfulAlly>;
 }
 
 interface IAwfulSpellOptions extends IAwfulSpellTraits {
@@ -259,17 +259,17 @@ interface IAwfulSpell {
   range: number;
   readonly usable: boolean;
   used(this: void, time: number): boolean;
-  inRange(this: void, unit: Unit): boolean;
+  inRange(this: void, unit: IAwfulUnit): boolean;
   Callback(key: string, func: AwfulSpellCallback): void;
   Callback(func: AwfulSpellCallback): void;
   Cast(options?: IAwfulSpellOptions): boolean;
-  Cast(unit: Unit, options?: IAwfulSpellOptions): boolean;
+  Cast(unit: IAwfulUnit, options?: IAwfulSpellOptions): boolean;
   Castable(options?: IAwfulSpellTraits): boolean;
-  Castable(unit: Unit, options?: IAwfulSpellTraits): boolean;
+  Castable(unit: IAwfulUnit, options?: IAwfulSpellTraits): boolean;
   AoECast(x: number, y: number, z: number): boolean;
-  AoECast(unit: Unit): boolean;
+  AoECast(unit: IAwfulUnit): boolean;
   SmartAoE(
-    posOrUnit: Unit | AwfulPosition,
+    posOrUnit: IAwfulUnit | AwfulPosition,
     options?: IAwfulSpellTraits
   ): boolean;
   ClearCache(): void;

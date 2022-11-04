@@ -144,14 +144,17 @@ interface IAwful {
     spellId: number | number[],
     spellTraits?: IAwfulSpellTraits
   ): IAwfulSpell;
-  NewItem(this: void, itemIds: number | number[] | string | string[]): Item;
+  NewItem(
+    this: void,
+    itemIds: number | number[] | string | string[]
+  ): IAwfulItem;
   Populate(this: void, ...args: unknown[]): void;
   addEventCallback(
     this: void,
     callbackFunction: AwfulUnknownEventCallback,
     callbackEvent?: string
   ): void;
-  immerseOL(this: void, list: Unit[]): void;
+  immerseOL(this: void, list: IAwfulUnit[]): void;
   addUpdateCallback(
     this: void,
     callback: (this: void) => void,
@@ -178,14 +181,14 @@ interface IAwful {
 
   readonly UI: IAwfulUi;
   readonly Actor: IAwfulActor;
-  readonly player: Player;
-  readonly target: Unit;
-  readonly focus: Unit;
-  readonly healer: Ally;
-  readonly enemyHealer: Players;
-  readonly pet: Unit;
-  readonly [key: `arena${number}`]: Players;
-  readonly [key: `party${number}`]: Ally;
+  readonly player: IAwfulPlayer;
+  readonly target: IAwfulUnit;
+  readonly focus: IAwfulUnit;
+  readonly healer: IAwfulAlly;
+  readonly enemyHealer: IAwfulPlayers;
+  readonly pet: IAwfulUnit;
+  readonly [key: `arena${number}`]: IAwfulPlayers;
+  readonly [key: `party${number}`]: IAwfulAlly;
   readonly time: number;
   readonly buffer: number;
   readonly latency: number;
@@ -199,22 +202,22 @@ interface IAwful {
   readonly enabled: boolean;
   // Lists
   /** Group that does not contains player */
-  readonly group: IAwfulList<Ally>;
+  readonly group: IAwfulList<IAwfulAlly>;
   /** Group that contains player */
-  readonly fGroup: IAwfulList<Ally>;
+  readonly fGroup: IAwfulList<IAwfulAlly>;
   /** Group that contains player */
-  readonly fullGroup: IAwfulList<Ally>;
-  readonly enemies: IAwfulList<Unit>;
-  readonly friends: IAwfulList<Ally>;
-  readonly totems: IAwfulList<Unit>;
-  readonly seeds: IAwfulList<Unit>;
-  readonly units: IAwfulList<Unit>;
-  readonly pets: IAwfulList<Unit>;
-  readonly players: IAwfulList<Players>;
-  readonly explosives: IAwfulList<Unit>;
-  readonly shades: IAwfulList<Unit>;
-  readonly objects: IAwfulList<IObject>;
-  readonly triggers: IAwfulList<ITrigger>;
+  readonly fullGroup: IAwfulList<IAwfulAlly>;
+  readonly enemies: IAwfulList<IAwfulUnit>;
+  readonly friends: IAwfulList<IAwfulAlly>;
+  readonly totems: IAwfulList<IAwfulUnit>;
+  readonly seeds: IAwfulList<IAwfulUnit>;
+  readonly units: IAwfulList<IAwfulUnit>;
+  readonly pets: IAwfulList<IAwfulUnit>;
+  readonly players: IAwfulList<IAwfulPlayers>;
+  readonly explosives: IAwfulList<IAwfulUnit>;
+  readonly shades: IAwfulList<IAwfulUnit>;
+  readonly objects: IAwfulList<IAwfulObject>;
+  readonly triggers: IAwfulList<IAwfulTrigger>;
   readonly protected: IAwfulProtected;
 }
 

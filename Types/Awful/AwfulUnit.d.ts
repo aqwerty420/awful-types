@@ -21,18 +21,18 @@ interface MovingParms {
   duration?: number;
 }
 
-interface Unit {
-  canAttack(this: void, unit: Unit): boolean;
+interface IAwfulUnit {
+  canAttack(this: void, unit: IAwfulUnit): boolean;
 
   /**
    * Compares the object with another to determine if they're the same
    */
-  isUnit(this: void, unit: Unit): boolean;
+  isUnit(this: void, unit: IAwfulUnit): boolean;
 
   /**
    * Checks if the unit is friends with another unit
    */
-  friendOf(this: void, unit: Unit): boolean;
+  friendOf(this: void, unit: IAwfulUnit): boolean;
 
   /**
    * Provides information about a specific buff on the object
@@ -47,7 +47,7 @@ interface Unit {
   buff(
     this: void,
     nameOrId: AwfulNameOrId,
-    sourceUnit?: Unit
+    sourceUnit?: IAwfulUnit
   ): LuaMultiReturn<Aura> | undefined;
 
   /**
@@ -56,7 +56,11 @@ interface Unit {
    * @param nameOrId The name or id of the desired buff
    * @param sourceUnit The source unit of the desired buff
    */
-  buffRemains(this: void, nameOrId: AwfulNameOrId, sourceUnit?: Unit): number;
+  buffRemains(
+    this: void,
+    nameOrId: AwfulNameOrId,
+    sourceUnit?: IAwfulUnit
+  ): number;
 
   /**
    * Number of stacks the object has for a buff
@@ -64,7 +68,11 @@ interface Unit {
    * @param nameOrId The name or id of the desired buff
    * @param sourceUnit The source unit of the desired buff
    */
-  buffStacks(this: void, nameOrId: AwfulNameOrId, sourceUnit?: Unit): number;
+  buffStacks(
+    this: void,
+    nameOrId: AwfulNameOrId,
+    sourceUnit?: IAwfulUnit
+  ): number;
 
   /**
    * The amount of time that the given buff has been active on the object
@@ -72,7 +80,11 @@ interface Unit {
    * @param nameOrId The name or id of the desired buff
    * @param sourceUnit The source unit of the desired buff
    */
-  buffUptime(this: void, nameOrId: AwfulNameOrId, sourceUnit?: Unit): number;
+  buffUptime(
+    this: void,
+    nameOrId: AwfulNameOrId,
+    sourceUnit?: IAwfulUnit
+  ): number;
 
   /**
    * Query the object for a list of active buffs
@@ -80,7 +92,11 @@ interface Unit {
    * @param namesOrIds The names or ids of the desired buffs
    * @param sourceUnit The source unit of the desired buffs
    */
-  buffFrom(this: void, namesOrIds: AwfulNamesOrIds, sourceUnit?: Unit): Aura[];
+  buffFrom(
+    this: void,
+    namesOrIds: AwfulNamesOrIds,
+    sourceUnit?: IAwfulUnit
+  ): Aura[];
 
   /**
    * Query the object for the number of active buffs matching the Spell IDs / Spell Names within the given array
@@ -88,7 +104,11 @@ interface Unit {
    * @param namesOrIds The names or ids of the desired buffs
    * @param sourceUnit The source unit of the desired buffs
    */
-  buffsFrom(this: void, namesOrIds: AwfulNamesOrIds, sourceUnit?: Unit): number;
+  buffsFrom(
+    this: void,
+    namesOrIds: AwfulNamesOrIds,
+    sourceUnit?: IAwfulUnit
+  ): number;
 
   /**
    * Provides information about a specific debuff on the object
@@ -102,7 +122,7 @@ interface Unit {
   debuff(
     this: void,
     nameOrId: AwfulNameOrId,
-    sourceUnit?: Unit
+    sourceUnit?: IAwfulUnit
   ): LuaMultiReturn<Aura> | undefined;
 
   /**
@@ -111,7 +131,11 @@ interface Unit {
    * @param nameOrId The name or id of the desired debuff
    * @param sourceUnit The source unit of the desired debuff
    */
-  debuffRemains(this: void, nameOrId: AwfulNameOrId, sourceUnit?: Unit): number;
+  debuffRemains(
+    this: void,
+    nameOrId: AwfulNameOrId,
+    sourceUnit?: IAwfulUnit
+  ): number;
 
   /**
    * Number of stacks the object has for a debuff
@@ -119,7 +143,11 @@ interface Unit {
    * @param nameOrId The name or id of the desired debuff
    * @param sourceUnit The source unit of the desired debuff
    */
-  debuffStacks(this: void, nameOrId: AwfulNameOrId, sourceUnit?: Unit): number;
+  debuffStacks(
+    this: void,
+    nameOrId: AwfulNameOrId,
+    sourceUnit?: IAwfulUnit
+  ): number;
 
   /**
    * The amount of time that the given debuff has been active on the object
@@ -127,7 +155,11 @@ interface Unit {
    * @param nameOrId The name or id of the desired debuff
    * @param sourceUnit The source unit of the desired debuff
    */
-  debuffUptime(this: void, nameOrId: AwfulNameOrId, sourceUnit?: Unit): number;
+  debuffUptime(
+    this: void,
+    nameOrId: AwfulNameOrId,
+    sourceUnit?: IAwfulUnit
+  ): number;
 
   /**
    * Query the object for a list of active debuffs
@@ -138,7 +170,7 @@ interface Unit {
   debuffFrom(
     this: void,
     namesOrIds: AwfulNamesOrIds,
-    sourceUnit?: Unit
+    sourceUnit?: IAwfulUnit
   ): Aura[];
 
   /**
@@ -150,7 +182,7 @@ interface Unit {
   debuffsFrom(
     this: void,
     namesOrIds: AwfulNamesOrIds,
-    sourceUnit?: Unit
+    sourceUnit?: IAwfulUnit
   ): number;
 
   /**
@@ -173,14 +205,17 @@ interface Unit {
    *
    * @param unit The unit to check.
    */
-  distanceTo(this: void, unit: Unit): number;
+  distanceTo(this: void, unit: IAwfulUnit): number;
 
   /**
    * Distance between the object and another object
    *
    * @param unit The unit to check
    */
-  distanceToLiteral(this: void, unitOrPosition: Unit | AwfulPosition): number;
+  distanceToLiteral(
+    this: void,
+    unitOrPosition: IAwfulUnit | AwfulPosition
+  ): number;
 
   /**
    * Checks if the object is facing another object [at a 180 degree angle by default - the required facing angle to cast spells]
@@ -188,7 +223,7 @@ interface Unit {
    * @param unit The unit to check.
    * @param angle The angle to check for.
    */
-  facing(this: void, unit: Unit, angle?: number): boolean;
+  facing(this: void, unit: IAwfulUnit, angle?: number): boolean;
 
   /**
    * Checks if the object is facing a given position [at a 180 degree angle by default - the required facing angle to cast spells]
@@ -209,12 +244,12 @@ interface Unit {
    * Checks if the object and another object are in line of sight of each other.
    * @param unit The unit to check.
    */
-  losOf(this: void, unit: Unit): boolean;
+  losOf(this: void, unit: IAwfulUnit): boolean;
   /**
    * Checks LoS without accounting for LoS-impairing effects like smoke bomb.
    * @param unit The unit to check.
    */
-  losOfLiteral(uthis: void, nit: Unit): boolean;
+  losOfLiteral(uthis: void, nit: IAwfulUnit): boolean;
   /**
    * Current 3D position of the object.
    */
@@ -229,13 +264,13 @@ interface Unit {
    * @param time The time in seconds.
    * @param unit Unit to check or player if not specified.
    */
-  predictDistance(this: void, time: number, unit?: Unit): number;
+  predictDistance(this: void, time: number, unit?: IAwfulUnit): number;
   /**
    * The object's estimated distance from the given Awful Object after the given time has elapsed (ignoring combat reach)
    * @param time The time in seconds.
    * @param unit Unit to check or player if not specified.
    */
-  predictDistanceLiteral(this: void, time: number, unit?: Unit): number;
+  predictDistanceLiteral(this: void, time: number, unit?: IAwfulUnit): number;
   /**
    *  The object's estimated distance from the given position after the given time has elapsed.
    * @param x The x coordinate to check.
@@ -255,24 +290,24 @@ interface Unit {
    * @param time The time in seconds.
    * @param unit The unit to check or player if not specified.
    */
-  predictLoS(this: void, time: number, unit?: Unit): boolean;
+  predictLoS(this: void, time: number, unit?: IAwfulUnit): boolean;
   /**
    * Checks if the unit is in melee range of another unit.
    * @param unit The unit to check.
    */
-  meleeRangeOf(this: void, unit: Unit): boolean;
+  meleeRangeOf(this: void, unit: IAwfulUnit): boolean;
   /**
    * Checks if the unit is / has been moving toward another unit.
    * @param unit The unit to check.
    * @param params The angle (default 30) is in degrees and duration (default 0) in seconds.
    */
-  movingToward(this: void, unit: Unit, params?: MovingParms): boolean;
+  movingToward(this: void, unit: IAwfulUnit, params?: MovingParms): boolean;
   /**
    * Checks if the unit is / has been moving away from another unit.
    * @param unit The unit to check.
    * @param params The angle (default 220) is in degrees and duration (default 0) in seconds.
    */
-  movingAwayFrom(this: void, unit: Unit, params?: MovingParms): boolean;
+  movingAwayFrom(this: void, unit: IAwfulUnit, params?: MovingParms): boolean;
   setTarget(this: void): void;
   face(this: void): void;
   setFocus(this: void): void;
@@ -307,7 +342,7 @@ interface Unit {
   /**
    * Check if the unit is friendly.
    */
-  readonly creator: Unit;
+  readonly creator: IAwfulUnit;
   /**
    * Check if the unit creator.
    */
@@ -350,7 +385,7 @@ interface Unit {
   /**
    * Can be an empty object.
    */
-  readonly target: Unit;
+  readonly target: IAwfulUnit;
   readonly visible: boolean;
   readonly buffCount: number;
   /**
@@ -488,7 +523,7 @@ interface Unit {
    */
   readonly casting9?: string;
   readonly castID: number | boolean;
-  readonly castTarget?: Unit;
+  readonly castTarget?: IAwfulUnit;
   readonly castPct: number;
   readonly castRemains: number;
   readonly castTimeComplete: number;
@@ -733,7 +768,7 @@ interface Unit {
   readonly ttd: number;
 }
 
-interface Players extends Unit {
+interface IAwfulPlayers extends IAwfulUnit {
   readonly role: AwfulRoles;
   readonly isHealer: boolean;
   readonly isMelee: boolean;
@@ -755,10 +790,10 @@ interface Players extends Unit {
   /** Max Velocity of moving unit */
   readonly speed2: number;
 
-  readonly castingTarget: Players;
+  readonly castingTarget: IAwfulPlayers;
 }
 
-interface Ally extends Players {
+interface IAwfulAlly extends IAwfulPlayers {
   readonly spec: AwfulClassSpecs;
   /**
    * Can only be used on players who are in your party and visible
@@ -767,7 +802,7 @@ interface Ally extends Players {
   readonly inspect: Object;
 }
 
-interface Player extends Ally {
+interface IAwfulPlayer extends IAwfulAlly {
   /**
    * Checks if the player has the given talent or PvP talent selected.
    *
@@ -777,7 +812,7 @@ interface Player extends Ally {
    */
   hasTalent(this: void, talent: string | number): boolean | number;
   hasConduit(this: void, conduitnameOrId: AwfulNameOrId): boolean;
-  face(this: void, unitOrdirection?: Unit | number): void;
+  face(this: void, unitOrdirection?: IAwfulUnit | number): void;
   /**
    * Checks to see if x,y,z position is in los of player
    */

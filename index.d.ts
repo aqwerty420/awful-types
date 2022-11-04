@@ -7,9 +7,9 @@
 /// <reference path="Types/Awful/AwfulSpell.d.ts" />
 /// <reference path="Types/Awful/AwfulUi.d.ts" />
 /// <reference path="Types/Awful/AwfulUnit.d.ts" />
-/// <reference path="Types/Awful/IObject.d.ts" />
-/// <reference path="Types/Awful/Item.d.ts" />
-/// <reference path="Types/Awful/ITrigger.d.ts" />
+/// <reference path="Types/Awful/AwfulObject.d.ts" />
+/// <reference path="Types/Awful/AwfulItem.d.ts" />
+/// <reference path="Types/Awful/AwfulTrigger.d.ts" />
 
 /// <reference path="Types/Unlocker/Unlocker.d.ts" />
 
