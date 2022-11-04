@@ -31,7 +31,6 @@ declare function AttackTarget(): void;
  * @param unit UnitId - The unit to cancel the buff from, must be under the player's control.
  * @param buffIndex index of the buff to cancel, ascending from 1.
  */
-
 declare function CancelUnitBuff(unit: string, buffIndex: string): void;
 
 declare const enum RuneType {
@@ -66,3 +65,34 @@ declare function GetRuneType(id: number): RuneType;
  declare function GetRuneCooldown(
   id: number
 ): LuaMultiReturn<[number, number, boolean]>;
+
+/**
+ * Returns information on a glyph socket.
+ *
+ * {@link https://wowpedia.fandom.com/wiki/API_GetGlyphSocketInfo}
+ *
+ * @param socketId The socket index to query, ranging from 1 through NUM_GLYPH_SLOTS.
+ * @param talentGroup Optional, ranging from 1 (primary) to 2 (secondary) the talent group to query. Defaults to the currently active talent group.
+ *
+ * @return 0 - enabled - True if the socket has a glyph inserted.
+ * @return 1 - glyphType - The type of glyph accepted by this socket. Either GLYPHTYPE_MAJOR or GLYPHTYPE_MINOR.
+ * @return 2 - glyphSpellID - The spell ID of the socketed glyph.
+ * @return 3 - iconFile - The file ID of the sigil icon associated with the socketed glyph.
+ */
+ declare function GetGlyphSocketInfo(
+  socketId: number,
+  talentGroup?: number
+): LuaMultiReturn<[boolean, number, number?, number?]>;
+
+/**
+ * Returns a link to a glyph specified by index and talent group.
+ *
+ * {@link https://wowpedia.fandom.com/wiki/API_GetGlyphLink}
+ *
+ * @param index Ranging from 1 to 6, the glyph's index. See Notes for more information.
+ * @param talentGroup Optional, ranging from 1 (primary) to 2 (secondary) the talent group to query. Defaults to the currently active talent group.
+ *
+ * @return 0 - link - The link to the glyph if it's populated, otherwise empty string.
+ */
+declare function GetGlyphLink(socketId: number, talentGroup?: number): string;
+
