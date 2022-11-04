@@ -53,32 +53,32 @@ type AwfulSpellCallback = (
 
 interface IAwfulSpellTraits {
   /**
-   * For AoE Spells - The diameter or of the AoE reticle.<br>
-   * Otherwise you can use the radius.<br>
+   * For AoE Spells - The diameter or of the AoE reticle.\
+   * Otherwise you can use the radius.\
    * Used by SmartAoE to know its boundaries when edging or beyond-max-ranging the AoE cast.
    */
   diameter?: number | (() => number);
   /**
-   * For AoE Spells - The radius or of the AoE reticle.<br>
-   * Otherwise you can use the diameter.<br>
+   * For AoE Spells - The radius or of the AoE reticle.\
+   * Otherwise you can use the diameter.\
    * Used by SmartAoE to know its boundaries when edging or beyond-max-ranging the AoE cast.
    */
   radius?: number | (() => number);
   /**
-   * Whether or not the spell has a beneficial effect.<br>
-   * Causes :Cast to avoid facing requirement. Most beneficial spells do not require facing.<br>
-   * :Cast will avoid buffs/debuffs that absorb beneficial effects (e.g, Cyclone / Banish)<br>
+   * Whether or not the spell has a beneficial effect.\
+   * Causes :Cast to avoid facing requirement. Most beneficial spells do not require facing.\
+   * :Cast will avoid buffs/debuffs that absorb beneficial effects (e.g, Cyclone / Banish)\
    * This is an alternative from heal trait - which also checks for healing immunities specifically.
    */
   beneficial?: boolean;
   /**
-   * The type of damage the spell does (if any).<br>
+   * The type of damage the spell does (if any).\
    * Causes :Cast to avoid attacking into immunities against the given damage type.
    */
   damage?: AwfulSpellType;
   /**
-   * Whether or not the spell is a healing effect.<br>
-   * Causes :Cast to avoid facing requirement. Most healing spells do not require facing.<br>
+   * Whether or not the spell is a healing effect.\
+   * Causes :Cast to avoid facing requirement. Most healing spells do not require facing.\
    * :Cast will avoid buffs/debuffs that absorb all healing effects (e.g, Cyclone / Banish).
    */
   heal?: boolean;
@@ -93,7 +93,7 @@ interface IAwfulSpellTraits {
    */
   cc?: boolean | CCType;
   /**
-   * The spell applies a bleed effect.<br>
+   * The spell applies a bleed effect.\
    * Causes :Cast to avoid immunities to bleeds (e.g, empowered kyrian potion)
    */
   bleed?: boolean;
@@ -256,7 +256,7 @@ interface IAwfulSpell {
   readonly known: boolean;
   readonly name: string;
   readonly queued: boolean;
-  readonly range: number;
+  range: number;
   readonly usable: boolean;
   used(this: void, time: number): boolean;
   inRange(this: void, unit: Unit): boolean;

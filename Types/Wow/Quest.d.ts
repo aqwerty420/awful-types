@@ -35,16 +35,6 @@ declare namespace C_QuestLog {
   function IsQuestFlaggedCompleted(questId: number): boolean;
 
   /**
-   * Returns if a quest has been completed
-   *
-   * {@link https://wowpedia.fandom.com/wiki/API_GetNumQuestLogEntries}
-   *
-   * @returns 0 - numEntries - Number of entries in the Quest Log, including collapsable zone headers
-   * @returns 1 - numQuests - Number of actual quests in the Quest Log, not counting zone headers
-   */
-  function GetNumQuestLogEntries(): LuaMultiReturn<[number, number]>;
-
-  /**
    * Only returns a questID for actual quests, not headers
    *
    * {@link https://wowpedia.fandom.com/wiki/API_C_QuestLog.GetQuestIDForLogIndex}
@@ -55,3 +45,13 @@ declare namespace C_QuestLog {
    */
   function GetQuestIDForLogIndex(questLogIndex: number): number;
 }
+
+/**
+ * Returns the number of entries in the quest log
+ *
+ * {@link https://wowpedia.fandom.com/wiki/API_GetNumQuestLogEntries}
+ *
+ * @returns 0 - numEntries - Number of entries in the Quest Log, including collapsable zone headers
+ * @returns 1 - numQuests - Number of actual quests in the Quest Log, not counting zone headers
+ */
+export function GetNumQuestLogEntries(): LuaMultiReturn<[number, number]>;
