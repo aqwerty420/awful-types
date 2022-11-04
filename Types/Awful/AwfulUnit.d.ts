@@ -392,7 +392,7 @@ interface IAwfulUnit {
    * Returns an array of all buffs the unit has. Each buff is indexed appropriately, and contains all UnitBuff returns.\
    * {@link https://wowpedia.fandom.com/wiki/API_UnitAura}
    */
-  readonly buffs: Aura[] | undefined;
+  readonly buffs: Aura[];
   /**
    * Returns number of debuffs the unit has.
    */
@@ -401,7 +401,7 @@ interface IAwfulUnit {
    * Returns an array of all debuffs the unit has. Each debuff is indexed appropriately, and contains all UnitDebuff returns.\
    * {@link https://wowpedia.fandom.com/wiki/API_UnitAura}
    */
-  readonly debuffs: Aura[] | undefined;
+  readonly debuffs: Aura[];
   /**
    * Returns an array of all returns provided by UnitBuff on the object at the given index. You must provide a specific index to this attribute to get the appropriate return.\
    * {@link https://wowpedia.fandom.com/wiki/API_UnitAura}
