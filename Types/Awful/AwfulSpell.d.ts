@@ -225,6 +225,10 @@ interface IAwfulSpellTraits {
    *  when initializing new spell object, otherwise the list will become stale)
    */
   units?: IAwfulList<IAwfulUnit | IAwfulPlayers | IAwfulAlly>;
+  /**
+   * If you want to cast by ID, to cast a lower rank version of a spell for example
+   */
+  castByID?: boolean;
 }
 
 interface IAwfulSpellOptions extends IAwfulSpellTraits {
