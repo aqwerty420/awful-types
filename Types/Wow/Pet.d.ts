@@ -19,7 +19,7 @@ declare function GetPetActionInfo(
 
 declare const NUM_PET_ACTION_SLOTS: number;
 
-declare const enum PetModes {
+declare const enum PetMode {
   assist = 'PET_MODE_ASSIST',
   defensive = 'PET_MODE_DEFENSIVEASSIST',
   passive = 'PET_MODE_PASSIVE',

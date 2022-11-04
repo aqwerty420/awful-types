@@ -28,7 +28,7 @@ interface IAwfulList<T> extends Array<T> {
    */
   around(
     this: void,
-    unitOrPos: Unit | AwfulPosition,
+    unitOrPos: IAwfulUnit | AwfulPosition,
     distance: number,
     criteria?: AwfulListFilter<T>
   ): AwfulListReturn<T>;
