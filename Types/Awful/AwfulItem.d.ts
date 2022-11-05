@@ -10,6 +10,6 @@ interface IAwfulItem {
   cooldown: number;
   id: number;
   Use(unit?: IAwfulUnit): boolean;
-  UseAoe(unit: IAwfulUnit): boolean;
-  UseAoe(x: number, y: number, z: number): boolean;
+  UseAoE(unit: IAwfulUnit): boolean;
+  UseAoE(x: number, y: number, z: number): boolean;
 }

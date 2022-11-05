@@ -5,6 +5,7 @@ interface IAwfulNewActorParams {
 
 interface IAwfulSpecialization {
   Init(runtime: () => void): void;
+  readonly ready: boolean;
 }
 
 interface IAwfulActor {
