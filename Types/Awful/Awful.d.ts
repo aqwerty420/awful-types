@@ -86,9 +86,12 @@ type AwfulAlertOptions = {
 
 declare interface IAwfulProtected {
   RunMacroText(this: void, text: string): void;
+
   //TargetUnit: typeof TargetUnit;
   //UseInventoryItem: typeof UseInventoryItem;
+
   PetAttack: typeof PetAttack;
+
   //AttackTarget: typeof AttackTarget;
   //UseItemByName: typeof UseItemByName;
 }
@@ -99,7 +102,9 @@ interface IAwfulPath extends LuaMultiReturn<[AwfulPosition[], number]> {
     tolerance: number,
     highestQuality: number
   ): AwfulPathOrFalse;
+
   draw(this: void): IAwfulDraw;
+
   follow(this: void): void;
 }
 
@@ -145,30 +150,39 @@ interface IAwful {
     spellId: number | number[],
     spellTraits?: IAwfulSpellTraits
   ): IAwfulSpell;
+
   NewItem(
     this: void,
     itemIds: number | number[] | string | string[]
   ): IAwfulItem;
+
   Populate(this: void, ...args: unknown[]): void;
+
   addEventCallback(
     this: void,
     callbackFunction: AwfulUnknownEventCallback,
     callbackEvent?: string
   ): void;
+
   immerseOL(this: void, list: IAwfulUnit[]): void;
+
   addUpdateCallback(
     this: void,
     callback: (this: void) => void,
     onRoutineRun?: boolean
   ): void;
+
   inverse(this: void, rotation: number): number;
+
   Draw(
     this: void,
     callback: (this: void, draw: IAwfulDrawer) => void
   ): IAwfulDraw;
+
   //Command(this: void, command: string, e: boolean): Command;
 
   alert(this: void, message?: string, texture?: number): boolean;
+
   alert(this: void, options?: AwfulAlertOptions): boolean;
 
   hookSpellCasts(
