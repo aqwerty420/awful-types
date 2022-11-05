@@ -41,8 +41,8 @@ declare function GetSpellInfo(
 >;
 
 declare const enum BookType {
-  spell = 'BOOKTYPE_SPELL',
-  pet = 'BOOKTYPE_PET',
+  spell = 'spell',
+  pet = 'pet',
 }
 
 /**
