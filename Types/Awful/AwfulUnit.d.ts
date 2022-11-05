@@ -16,7 +16,7 @@ declare const enum Covenants {
   venthyr = 'Venthyr',
 }
 
-interface MovingParms {
+interface IAwfulMovingParams {
   angle?: number;
   duration?: number;
 }
@@ -210,7 +210,7 @@ interface IAwfulUnit {
   /**
    * Distance between the object and another object
    *
-   * @param unit The unit to check
+   * @param unitOrPosition The unit or position to check
    */
   distanceToLiteral(
     this: void,
@@ -240,39 +240,52 @@ interface IAwfulUnit {
     z: number,
     angle?: number
   ): boolean;
+
   /**
    * Checks if the object and another object are in line of sight of each other.
+   *
    * @param unit The unit to check.
    */
   losOf(this: void, unit: IAwfulUnit): boolean;
+
   /**
    * Checks LoS without accounting for LoS-impairing effects like smoke bomb.
+   *
    * @param unit The unit to check.
    */
   losOfLiteral(uthis: void, nit: IAwfulUnit): boolean;
+
   /**
    * Current 3D position of the object.
    */
   position(this: void): AwfulPosition;
+
   /**
    * The object's estimated position after the given time, based on current velocity & moving direction.
+   *
    * @param time The time in seconds.
    */
   predictPosition(this: void, time: number): AwfulPosition;
+
   /**
    * The object's estimated distance from the given Awful Object after the given time has elapsed.
+   *
    * @param time The time in seconds.
    * @param unit Unit to check or player if not specified.
    */
   predictDistance(this: void, time: number, unit?: IAwfulUnit): number;
+
   /**
    * The object's estimated distance from the given Awful Object after the given time has elapsed (ignoring combat reach)
+   *
    * @param time The time in seconds.
    * @param unit Unit to check or player if not specified.
    */
   predictDistanceLiteral(this: void, time: number, unit?: IAwfulUnit): number;
+
   /**
    *  The object's estimated distance from the given position after the given time has elapsed.
+   *
    * @param x The x coordinate to check.
    * @param y The y coordinate to check.
    * @param z The z coordinate to check.
@@ -285,207 +298,320 @@ interface IAwfulUnit {
     z: number,
     time: number
   ): number;
+
   /**
    * Estimates whether the object will be in line of sight.
+   *
    * @param time The time in seconds.
    * @param unit The unit to check or player if not specified.
    */
   predictLoS(this: void, time: number, unit?: IAwfulUnit): boolean;
+
   /**
    * Checks if the unit is in melee range of another unit.
+   *
    * @param unit The unit to check.
    */
   meleeRangeOf(this: void, unit: IAwfulUnit): boolean;
+
   /**
    * Checks if the unit is / has been moving toward another unit.
+   *
    * @param unit The unit to check.
    * @param params The angle (default 30) is in degrees and duration (default 0) in seconds.
    */
-  movingToward(this: void, unit: IAwfulUnit, params?: MovingParms): boolean;
+  movingToward(
+    this: void,
+    unit: IAwfulUnit,
+    params?: IAwfulMovingParams
+  ): boolean;
+
   /**
    * Checks if the unit is / has been moving away from another unit.
+   *
    * @param unit The unit to check.
    * @param params The angle (default 220) is in degrees and duration (default 0) in seconds.
    */
-  movingAwayFrom(this: void, unit: IAwfulUnit, params?: MovingParms): boolean;
+  movingAwayFrom(
+    this: void,
+    unit: IAwfulUnit,
+    params?: IAwfulMovingParams
+  ): boolean;
+
   setTarget(this: void): void;
+
   face(this: void): void;
+
   setFocus(this: void): void;
+
+  TimeToX(this: void, percentage: number, minSamples: number): number;
+
+  TimeToDie(this: void, minSamples: number): number;
+
   /**
    * Check if the unit exists.
    */
   readonly exists: boolean;
+
   /**
    * The object's id or 0 for players.
    */
   readonly id: number;
+
   /**
    * Amount of absorption (shields) remaining on the object.
    */
   readonly absorbs: number;
+
   /**
    * Check if the unit is in combat.
    */
   readonly combat: boolean;
+
   /**
    * Check if the unit is dead.
    */
   readonly dead: boolean;
+
   /**
    * Check if the unit is an enemy.
    */
   readonly enemy: boolean;
+
   /**
    * Check if the unit is an ally.
    */
   readonly ally: boolean;
+
   /**
    * Check if the unit is friendly.
    */
   readonly creator: IAwfulUnit;
+
   /**
    * Check if the unit creator.
    */
   readonly friend: boolean;
+
   /**
    * Check if unit is a player
    */
   readonly isPlayer: boolean;
+
   /**
    * Check if unit is a pet
    */
   readonly isPet: boolean;
+
   /**
    * The GUID of the object
    */
   readonly guid: string;
+
   /**
    * The health of the object in percentage
    */
   readonly hp: number;
+
   /**
    * Actual current health of object, as returned from UnitHealth\
    * {@link https://wowwiki-archive.fandom.com/wiki/API_UnitHealth}
    */
   readonly health: number;
+
   /**
    * Max health of object, as returned from UnitHealthMax\
    * {@link https://wowwiki-archive.fandom.com/wiki/API_UnitHealthMax}
    */
   readonly healthMax: number;
+
   /**
    * The height of the object.
    */
   readonly height: number;
+
   readonly level: number;
+
   readonly name: string;
+
   readonly pointer: IUnitId;
+
   readonly race?: string;
+
   readonly stealth: number;
   /**
    * Can be an empty object.
    */
   readonly target: IAwfulUnit;
+
   readonly visible: boolean;
+
   readonly buffCount: number;
   /**
    * Returns an array of all buffs the unit has. Each buff is indexed appropriately, and contains all UnitBuff returns.\
    * {@link https://wowpedia.fandom.com/wiki/API_UnitAura}
    */
   readonly buffs: Aura[];
+
   /**
    * Returns number of debuffs the unit has.
    */
   readonly debuffCount: number;
+
   /**
    * Returns an array of all debuffs the unit has. Each debuff is indexed appropriately, and contains all UnitDebuff returns.\
    * {@link https://wowpedia.fandom.com/wiki/API_UnitAura}
    */
   readonly debuffs: Aura[];
+
   /**
    * Returns an array of all returns provided by UnitBuff on the object at the given index. You must provide a specific index to this attribute to get the appropriate return.\
    * {@link https://wowpedia.fandom.com/wiki/API_UnitAura}
    */
   readonly [key: `buff${number}`]: LuaMultiReturn<Aura>;
+
   /**
    * Returns an array of all returns provided by UnitDebuff on the object at the given index. You must provide a specific index to this attribute to get the appropriate return.\
    * {@link https://wowpedia.fandom.com/wiki/API_UnitAura}
    */
   readonly [key: `debuff${number}`]: LuaMultiReturn<Aura>;
+
   /**
    * Returns an array of description text for each buff the unit has. Can parse these descriptions to determine whether or not the unit has an effect of a certain type, or get creative with it! The indexing of the descriptions correspond with their parent buffs.
    */
   readonly buffDescriptions: string[];
+
   /**
    * Returns an array of description text for each debuff the unit has. Can parse these descriptions to determine whether or not the unit has an effect of a certain type, or get creative with it! The indexing of the descriptions correspond with their parent debuffs.
    */
   readonly debuffDescriptions: string[];
+
   /**
    * Returns true if the object has offensive cooldowns up.
    */
   readonly cds: boolean;
+
   readonly charmed: boolean;
+
   readonly dotted: boolean;
+
   readonly purgeCount: number;
+
   readonly power: number;
+
   readonly powerMax: number;
+
   readonly powerPct: number;
+
   readonly mana: number;
+
   readonly manaMax: number;
+
   readonly manaPct: number;
+
   readonly rage: number;
+
   readonly rageMax: number;
+
   readonly ragePct: number;
+
   readonly focus: number;
+
   readonly focusMax: number;
+
   readonly focusPct: number;
+
   readonly energy: number;
+
   readonly energyMax: number;
+
   readonly energyPct: number;
+
   readonly comboPoints: number;
+
   readonly comboPointsMax: number;
+
   readonly comboPointsPct: number;
+
   readonly runes: number;
+
   readonly runesMax: number;
+
   readonly runesPct: number;
+
   readonly runicPower: number;
+
   readonly runicPowerMax: number;
+
   readonly runicPowerPct: number;
+
   readonly soulShards: number;
+
   readonly soulShardsMax: number;
+
   readonly soulShardsPct: number;
+
   readonly astralPower: number;
+
   readonly astralPowerMax: number;
+
   readonly astralPowerPct: number;
+
   readonly alternatePower: number;
+
   readonly alternatePowerMax: number;
+
   readonly alternatePowerPct: number;
+
   readonly holyPower: number;
+
   readonly holyPowerMax: number;
+
   readonly holyPowerPct: number;
+
   readonly maelstrom: number;
+
   readonly maelstromMax: number;
+
   readonly maelstromPct: number;
+
   readonly chi: number;
+
   readonly chiMax: number;
+
   readonly chiPct: number;
+
   readonly insanity: number;
+
   readonly insanityMax: number;
+
   readonly insanityPct: number;
+
   readonly arcaneCharges: number;
+
   readonly arcaneChargesMax: number;
+
   readonly arcaneChargesPct: number;
+
   readonly fury: number;
+
   readonly furyMax: number;
+
   readonly furyPct: number;
+
   readonly pain: number;
+
   readonly painMax: number;
+
   readonly painPct: number;
+
   readonly channel: string;
+
   /**
    * The name of the spell, or nil if no spell is being cast.
    */
   readonly casting?: string;
+
   /**
    * The string describing the rank of the spell.
    * @example for a rank 1 spell
@@ -494,273 +620,353 @@ interface IAwfulUnit {
    *  ```
    */
   readonly casting2?: string;
+
   /**
    * The name of the spell.
    */
   readonly casting3?: string;
+
   /**
    * The texture path associated with the spell.
    */
   readonly casting4?: string;
+
   /**
    * Specifies when casting has begun, in milliseconds.
    */
   readonly casting5?: string;
+
   /**
    * Specifies when casting will end, in milliseconds.
    */
   readonly casting6?: string;
+
   /**
    *  Specifies if the cast is a tradeskill.
    */
   readonly casting7?: string;
+
   /**
    * castID.
    */
   readonly casting8: string;
+
   /**
    * Interrupt.
    */
   readonly casting9?: string;
+
   readonly castID: number | boolean;
+
   readonly castTarget?: IAwfulUnit;
+
   readonly castPct: number;
+
   readonly castRemains: number;
+
   readonly castTimeComplete: number;
+
   readonly castint: boolean;
+
   /**
    * {@link https://wowpedia.fandom.com/wiki/API_UnitChannelInfo?so=search}
    */
   readonly channeling?: LuaMultiReturn<ChannelInfo>;
+
   readonly channelID: number | boolean;
+
   readonly channelRemains: number;
+
   readonly channelTimeComplete: number;
+
   readonly gcdRemains: number;
   /**
    * spellID
    */
   readonly lastCast?: number;
+
   readonly distance: number;
+
   readonly distanceLiteral: number;
+
   readonly combatReach: number;
+
   readonly boundingRadius: number;
   /**
    * 180 degrees angle, used for spell cast
    */
   readonly playerFacing: boolean;
+
   [key: `playerFacing${number}`]: boolean;
   /**
    * Checks if the object and player are in line of sight of each other.
    */
   readonly los: boolean;
+
   /**
    * Checks LoS without accounting for LoS-impairing effects like smoke bomb.
    */
   readonly losLiteral: boolean;
+
   /**
    * In radians
    */
   readonly rotation: number;
+
   readonly meleeRange: boolean;
-  //TODO movementFlags idk
+
   readonly moving: boolean;
+
   /**
    * In radians
    */
   readonly movingDirection: number;
+
   /**
    * In yards per second
    */
   readonly currentSpeed: number;
+
   /**
    * In yards per second
    */
   readonly runSpeed: number;
+
   /**
    * If the object is in breakable crowd control, returns the spellID of that crowd control debuff.
    */
   readonly bcc?: number;
+
   /**
    * The remaining time of breakable cc effects on the object.
    */
   readonly bccRemains: number;
+
   /**
    * If the object is in crowd control, returns the spellID of that crowd control debuff.\
    * If there is more than one CC effect active, the one with the longest remaining duration's ID is returned
    */
   readonly cc?: number;
+
   readonly ccRemains: number;
+
   /**
    * @returns [[id, name, remains, drCat, sourceGUID]]
    */
   readonly ccInfo: CCInfoList;
+
   /*
    * spellID
    */
   readonly disarmed?: number;
+
   /*
    * spellID
    */
   readonly disorient?: number;
+
   readonly disorientRemains: number;
+
   /**
    * @returns [id, name, remains, drCat, sourceGUID]
    */
   readonly disorientInfo?: CCInfo;
+
   /*
    * spellID
    */
   readonly incapacitated?: number;
+
   readonly incapacitateRemains: number;
+
   /**
    * @returns [id, name, remains, drCat, sourceGUID]
    */
   readonly incapacitateInfo?: CCInfo;
+
   /*
    * spellID
    */
   readonly slowed?: number;
+
   /*
    * spellID
    */
   readonly stunned?: number;
+
   readonly stunnedRemains: number;
+
   /**
    * @returns [id, name, remains, drCat, sourceGUID]
    */
   readonly stunnedInfo?: CCInfo;
+
   /* spellID*/
   readonly rooted?: number;
+
   readonly rootRemains: number;
+
   /**
    * @returns [id, name, remains, drCat, sourceGUID]
    */
   readonly rootInfo?: CCInfo;
+
   /*spellID*/
   readonly silenced?: number;
+
   /**
    * The remaining time of silence effects on the object.
    */
   readonly silenceRemains: number;
+
   /**
    * The remaining time of silence effects on the object.\
    * @returns [id, name, remains, drCat, sourceGUID]
    */
   readonly silenceInfo?: CCInfo;
+
   /**
    * The disorient DR of the object. 0.25 is quarter DR, 0.5 is half DR, 1 is full DR.
    */
   readonly disorientDR: number;
+
   /**
    * The time remaining before the disorient DR of the object resets.
    */
   readonly disorientDRRemains: number;
+
   /**
    * The incapacitate DR of the object. 0.25 is quarter DR, 0.5 is half DR, 1 is full DR.
    */
   readonly incapacitateDR: number;
+
   /**
    * The time remaining before the incapacitate DR of the object resets.
    */
   readonly incapacitateDRRemains: number;
+
   /**
    * The stun DR of the object. 0.25 is quarter DR, 0.5 is half DR, 1 is full DR.
    */
   readonly stunDR: number;
+
   /**
    * The time remaining before the stun DR of the object resets.
    */
   readonly stunDRRemains: number;
+
   /**
    * The root DR of the object. 0.25 is quarter DR, 0.5 is half DR, 1 is full DR.
    */
   readonly rootDR: number;
+
   /**
    * The time remaining before the root DR of the object resets.
    */
   readonly rootDRRemains: number;
+
   /**
    * The silence DR of the object. 0.25 is quarter DR, 0.5 is half DR, 1 is full DR.
    */
   readonly silenceDR: number;
+
   /**
    * The time remaining before the silence DR of the object resets.
    */
   readonly silenceDRRemains: number;
+
   /**
    * Checks if the unit is currently immune to polymorph effects.
    */
   readonly beast: boolean;
+
   /**
    * Remaining duration of CC immunity effects on the unit.\
    * Specifically checks for pvp-related buffs/debuffs that make the unit immune to cc (holy ward, bladestorm, fleshcraft, etc.)
    */
   readonly ccImmunityRemains: number;
+
   /**
    * Remaining duration of healing immunity effects on the unit.\
    * Specifically checks for pvp-related buffs/debuffs that make the unit immune to healing (cyclone, etc.)
    */
   readonly healingImmunityRemains: number;
+
   /**
    * Checks if the unit is currently immune to crowd control effects.
    */
   readonly immuneCC: boolean;
+
   /**
    * Checks if the unit is currently immune to healing effects.
    */
   readonly immuneHealing: boolean;
+
   /**
    * Checks if the unit is currently immune to magic damage or effects.
    */
   readonly immuneMagic: boolean;
+
   /**
    * Checks if the unit is currently immune to magic damage.
    */
   readonly immuneMagicDamage: boolean;
+
   /**
    * Checks if the unit is currently immune to magic effects.
    */
   readonly immuneMagicEffects: boolean;
+
   /**
    * Remaining duration of magic damage immunities
    */
   readonly magicDamageImmunityRemains: number;
+
   /**
    * Remaining duration of magic effect immunities
    */
   readonly magicEffectImmunityRemains: number;
+
   /**
    * Checks if the unit is currently immune to physical damage or effects.
    */
   readonly immunePhysical: boolean;
+
   /**
    * Checks if the unit is currently immune to physical damage.
    */
   readonly immunePhysicalDamage: boolean;
+
   /**
    * Checks if the unit is currently immune to physical effects.
    */
   readonly immunePhysicalEffects: boolean;
+
   /**
    * Remaining duration of physical damage immunities.
    */
   readonly physicalDamageImmunityRemains: number;
+
   /**
    * Remaining duration of physical effect immunities.
    */
   readonly physicalEffectImmunityRemains: number;
+
   /**
    * Checks if the unit is currently immune to slows / snares.
    */
   readonly immuneSlows: boolean;
+
   /**
    * Checks if the unit is currently immune to stuns.
    */
   readonly immuneStuns: boolean;
+
   /**
    * Remaining healing absorption effect of Mindgames
    */
   readonly mgr: number;
+
   /**
    * Remaining time to die of the unit, based on linear regression algorithm lifted from HeroLib.\
    * Must set awful.ttd_enabled to true for ttd functions / attributes to work.

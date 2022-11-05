@@ -32,9 +32,33 @@ interface IAwfulList<T> extends Array<T> {
     distance: number,
     criteria?: AwfulListFilter<T>
   ): AwfulListReturn<T>;
+
+  /**
+   *
+   * @param criteria {@link AwfulListFilter} filter function
+   *
+   * @returns An {@link IAwfulList} of filtered units.
+   */
   filter(this: void, criteria: AwfulListFilter<T>): IAwfulList<T>;
+
+  /**
+   * Iterate over each unit in the list.
+   *
+   * @param callback {@link AwfulListLoopCallback} callback for each unit
+   *
+   */
   loop(this: void, callback: AwfulListLoopCallback<T>): void;
+
   stomp(this: void, callback: AwfulListStompCallback<T>): void;
+
   sort(this: void, criteria: AwfulListSortFilter<T>): IAwfulList<T>;
+
+  /**
+   * Filter the units in the list by the distance specified.
+   *
+   * @param range Maximum distance to the unit
+   *
+   * @returns An {@link IAwfulList} of filtered units.
+   */
   within(this: void, range: number): IAwfulList<T>;
 }

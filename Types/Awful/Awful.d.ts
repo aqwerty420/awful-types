@@ -178,8 +178,13 @@ interface IAwful {
 
   FightRemains(this: void): number;
 
-  // Config
+  /**
+   * Set to true to enable dev mode.\
+   * Ignored on published rotations.
+   */
   DevMode: boolean;
+
+  /** Set to true to enable time to die features. */
   ttd_enabled: boolean;
 
   readonly UI: IAwfulUi;
@@ -204,24 +209,48 @@ interface IAwful {
   readonly burst: boolean;
   readonly enabled: boolean;
   readonly pullTimer: number;
-  // Lists
-  /** Group that does not contains player */
+
+  /** Group that does not contains player. */
   readonly group: IAwfulList<IAwfulAlly>;
-  /** Group that contains player */
+
+  /** Group that contains player. */
   readonly fGroup: IAwfulList<IAwfulAlly>;
-  /** Group that contains player */
+
+  /** Group that contains player. */
   readonly fullGroup: IAwfulList<IAwfulAlly>;
+
+  /** Enemies around the player. */
   readonly enemies: IAwfulList<IAwfulUnit>;
+
+  /** Friendly units around the player. */
   readonly friends: IAwfulList<IAwfulAlly>;
+
+  /** Totems around the player. */
   readonly totems: IAwfulList<IAwfulUnit>;
+
   readonly seeds: IAwfulList<IAwfulUnit>;
+
+  /** Units around the player. */
   readonly units: IAwfulList<IAwfulUnit>;
+
   readonly pets: IAwfulList<IAwfulUnit>;
+
+  /** Other players around the player. */
   readonly players: IAwfulList<IAwfulPlayers>;
+
+  /** Explosives of the M+ Explosive affix. */
   readonly explosives: IAwfulList<IAwfulUnit>;
+
+  /** Shades of the M+ Spiteful affix. */
   readonly shades: IAwfulList<IAwfulUnit>;
+
+  /** Objects around the player. */
   readonly objects: IAwfulList<IAwfulObject>;
+
+  /** Triggers around the player. */
   readonly triggers: IAwfulList<IAwfulTrigger>;
+
+  /* Awful wrapper to call protected functions. */
   readonly protected: IAwfulProtected;
 }
 
