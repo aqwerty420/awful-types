@@ -93,3 +93,28 @@ declare function ToggleSpellAutocast(
   spellNameOrId: string,
   bookType?: BookType
 ): void;
+
+/**
+ * True if the player is in range to use the specified spell on the target unit.
+ *
+ * {@link https://wowpedia.fandom.com/wiki/API_IsSpellInRange}
+ *
+ * @param spellName Spell name to check the range of. The player must know the spell.
+ * @param target UnitId of the target to check the range of.
+ */
+declare function IsSpellInRange(spellName: string, target: IUnitId): boolean;
+
+/**
+ * True if the player is in range to use the specified spell on the target unit.
+ *
+ * {@link https://wowpedia.fandom.com/wiki/API_IsSpellInRange}
+ *
+ * @param index Spell book slot index, ascending from 1.
+ * @param bookType {@link BookType} specifying which spellbook to index.
+ * @param target UnitId of the target to check the range of.
+ */
+declare function IsSpellInRange(
+  index: number,
+  bookType: BookType,
+  target: IUnitId
+): boolean;
