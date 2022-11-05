@@ -62,7 +62,7 @@ declare function GetRuneType(id: number): RuneType;
  * @return 1 - duration - The duration of the rune's cooldown (regardless of whether or not it's on cooldown).
  * @return 2 - runeReady - Whether or not the rune is off cooldown. True if ready, false if not.
  */
- declare function GetRuneCooldown(
+declare function GetRuneCooldown(
   id: number
 ): LuaMultiReturn<[number, number, boolean]>;
 
@@ -79,7 +79,7 @@ declare function GetRuneType(id: number): RuneType;
  * @return 2 - glyphSpellID - The spell ID of the socketed glyph.
  * @return 3 - iconFile - The file ID of the sigil icon associated with the socketed glyph.
  */
- declare function GetGlyphSocketInfo(
+declare function GetGlyphSocketInfo(
   socketId: number,
   talentGroup?: number
 ): LuaMultiReturn<[boolean, number, number?, number?]>;
@@ -95,4 +95,3 @@ declare function GetRuneType(id: number): RuneType;
  * @return 0 - link - The link to the glyph if it's populated, otherwise empty string.
  */
 declare function GetGlyphLink(socketId: number, talentGroup?: number): string;
-

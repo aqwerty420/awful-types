@@ -61,4 +61,17 @@ interface IAwfulList<T> extends Array<T> {
    * @returns An {@link IAwfulList} of filtered units.
    */
   within(this: void, range: number): IAwfulList<T>;
+
+  /**
+   * @returns 0 - bestAngle
+   * @returns 1 - bestCount
+   */
+  arcAngle(
+    this: void,
+    r: number,
+    a: number,
+    steps: number,
+    criteria: AwfulListSortFilter<T>,
+    unit: IAwfulUnit
+  ): LuaMultiReturn<[number, number]>;
 }
