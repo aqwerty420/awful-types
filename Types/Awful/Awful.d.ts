@@ -203,6 +203,7 @@ interface IAwful {
   readonly mapID: number;
   readonly burst: boolean;
   readonly enabled: boolean;
+  readonly pullTimer: number;
   // Lists
   /** Group that does not contains player */
   readonly group: IAwfulList<IAwfulAlly>;
