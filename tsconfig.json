@@ -6,6 +6,7 @@
       "strict": true
     },
     "tstl": {
+      "noImplicitSelf": true,
         "luaTarget": "5.1",
     },
     "exclude": ["node_modules/**/*"]
