@@ -221,7 +221,7 @@ interface IAwful {
   readonly zone: string;
   readonly mapID: number;
   readonly burst: boolean;
-  readonly enabled: boolean;
+  enabled: boolean;
   readonly pullTimer: number;
 
   /** Group that does not contains player. */

@@ -253,7 +253,7 @@ interface IAwfulUnit {
    *
    * @param unit The unit to check.
    */
-  losOfLiteral(uthis: void, nit: IAwfulUnit): boolean;
+  losOfLiteral(this: void, unit: IAwfulUnit): boolean;
 
   /**
    * Current 3D position of the object.
@@ -384,12 +384,12 @@ interface IAwfulUnit {
   readonly ally: boolean;
 
   /**
-   * Check if the unit is friendly.
+   * Get the unit creator.
    */
   readonly creator: IAwfulUnit;
 
   /**
-   * Check if the unit creator.
+   * Check if the unit is friendly.
    */
   readonly friend: boolean;
 
@@ -439,14 +439,22 @@ interface IAwfulUnit {
   readonly race?: string;
 
   readonly stealth: number;
+
   /**
    * Can be an empty object.
    */
   readonly target: IAwfulUnit;
 
+  /**
+   * Checks if the unit is visible (within render range).
+   */
   readonly visible: boolean;
 
+  /**
+   * Returns number of buffs the unit has.
+   */
   readonly buffCount: number;
+
   /**
    * Returns an array of all buffs the unit has. Each buff is indexed appropriately, and contains all UnitBuff returns.\
    * {@link https://wowpedia.fandom.com/wiki/API_UnitAura}
@@ -673,31 +681,45 @@ interface IAwfulUnit {
    */
   readonly channeling?: LuaMultiReturn<ChannelInfo>;
 
-  readonly channelID: number | boolean;
+  readonly channelID?: number;
 
+  /**
+   * The time remaining on the object's channel, minus latency.
+   */
   readonly channelRemains: number;
 
   readonly channelTimeComplete: number;
 
-  readonly gcdRemains: number;
   /**
-   * spellID
+   * Distance between the player and the object, accounting for combat reach and bounding radius.
    */
-  readonly lastCast?: number;
-
   readonly distance: number;
 
+  /**
+   * Distance between the player and the object.
+   */
   readonly distanceLiteral: number;
 
+  /**
+   * The combat reach of the object.
+   */
   readonly combatReach: number;
 
-  readonly boundingRadius: number;
   /**
-   * 180 degrees angle, used for spell cast
+   * The bounding radius of the object.
+   */
+  readonly boundingRadius: number;
+
+  /**
+   * 180 degrees angle, used for spell cast.
    */
   readonly playerFacing: boolean;
 
+  /**
+   * Check if player is facing the unit at given angle.
+   */
   [key: `playerFacing${number}`]: boolean;
+
   /**
    * Checks if the object and player are in line of sight of each other.
    */
@@ -709,12 +731,18 @@ interface IAwfulUnit {
   readonly losLiteral: boolean;
 
   /**
-   * In radians
+   * Facing direction (rotation) of the object in radians.
    */
   readonly rotation: number;
 
+  /**
+   * Check if player is in melee range of the unit.
+   */
   readonly meleeRange: boolean;
 
+  /**
+   * Check if the unit is moving.
+   */
   readonly moving: boolean;
 
   /**
@@ -748,6 +776,9 @@ interface IAwfulUnit {
    */
   readonly cc?: number;
 
+  /**
+   * The remaining time of crowd control effects on the object. 0 if there is no CC effect.
+   */
   readonly ccRemains: number;
 
   /**
@@ -756,15 +787,18 @@ interface IAwfulUnit {
   readonly ccInfo: CCInfoList;
 
   /*
-   * spellID
+   * If the object is currently affected by a disarm, returns the spellID of that effect. Otherwise returns false.
    */
-  readonly disarmed?: number;
+  readonly disarmed: number | false;
 
   /*
-   * spellID
+   * If the object is disoriented, returns the spellID of the disorient debuff.
    */
   readonly disorient?: number;
 
+  /*
+   * The remaining time of disorient CC effects on the object. 0 if the object is not disoriented.
+   */
   readonly disorientRemains: number;
 
   /**
@@ -773,10 +807,13 @@ interface IAwfulUnit {
   readonly disorientInfo?: CCInfo;
 
   /*
-   * spellID
+   * If the object is incapacitated, returns the spellID of the incapacitate debuff.
    */
   readonly incapacitated?: number;
 
+  /*
+   * The remaining time of incapacitate CC effects on the object. 0 if the object is not incapacitated.
+   */
   readonly incapacitateRemains: number;
 
   /**
@@ -785,15 +822,18 @@ interface IAwfulUnit {
   readonly incapacitateInfo?: CCInfo;
 
   /*
-   * spellID
+   * If the object is slowed, returns the spellID of the slow debuff.
    */
   readonly slowed?: number;
 
   /*
-   * spellID
+   * If the object is stunned, returns the spellID of the stun debuff.
    */
   readonly stunned?: number;
 
+  /*
+   * The remaining time of stun CC effects on the object. 0 if the object is not stunned.
+   */
   readonly stunnedRemains: number;
 
   /**
@@ -801,9 +841,14 @@ interface IAwfulUnit {
    */
   readonly stunnedInfo?: CCInfo;
 
-  /* spellID*/
+  /*
+   * If the object is rooted, returns the spellID of the root debuff.
+   */
   readonly rooted?: number;
 
+  /*
+   * The remaining time of root effects on the object.
+   */
   readonly rootRemains: number;
 
   /**
@@ -811,7 +856,9 @@ interface IAwfulUnit {
    */
   readonly rootInfo?: CCInfo;
 
-  /*spellID*/
+  /**
+   * If the object is silenced, returns the spellID of the silence debuff.
+   */
   readonly silenced?: number;
 
   /**
@@ -975,25 +1022,46 @@ interface IAwfulUnit {
 }
 
 interface IAwfulPlayers extends IAwfulUnit {
+  /**
+   * Time until the unit's next GCD is available (if any).
+   */
+  readonly gcdRemains: number;
+
+  /**
+   * Latest spellID cast by the object.
+   */
+  readonly lastCast?: number;
+
   readonly role: AwfulRoles;
+
   readonly isHealer: boolean;
+
   readonly isMelee: boolean;
+
   readonly isRanged: boolean;
+
   readonly isTank: boolean;
+
   readonly race: string;
+
   /**
    * The class of the object.
    */
   readonly class: AwfulClasses;
+
   /**
    * The class of the object.
    */
   readonly class2: Classes2;
+
   /**
    * The unit's covenant or false if it doesn't have one.
    */
   readonly covenant: Covenants | false;
-  /** Max Velocity of moving unit */
+
+  /**
+   * Max Velocity of moving unit.
+   */
   readonly speed2: number;
 
   readonly castingTarget: IAwfulPlayers;
@@ -1001,6 +1069,7 @@ interface IAwfulPlayers extends IAwfulUnit {
 
 interface IAwfulAlly extends IAwfulPlayers {
   readonly spec: AwfulClassSpecs;
+
   /**
    * Can only be used on players who are in your party and visible
    */
@@ -1017,16 +1086,25 @@ interface IAwfulPlayer extends IAwfulAlly {
    * @returns False if the player doesn't have the talent, or the rank of the talent if the player has it.
    */
   hasTalent(this: void, talent: string | number): boolean | number;
+
   hasConduit(this: void, conduitnameOrId: AwfulNameOrId): boolean;
+
   face(this: void, unitOrdirection?: IAwfulUnit | number): void;
+
   /**
    * Checks to see if x,y,z position is in los of player
    */
   losCoordsLiteral(this: void, position: AwfulPosition): boolean;
+
   readonly specialization: AwfulClassSpecs;
+
   readonly mainHandEnchant: boolean;
+
   readonly offHandEnchant: boolean;
+
   readonly mounted: boolean;
+
   readonly timeStandingStill: number;
+
   readonly falling: boolean;
 }
