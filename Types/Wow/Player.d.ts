@@ -95,3 +95,8 @@ declare function GetGlyphSocketInfo(
  * @return 0 - link - The link to the glyph if it's populated, otherwise empty string.
  */
 declare function GetGlyphLink(socketId: number, talentGroup?: number): string;
+
+declare function GetTalentInfo(tabIndex: number, talentIndex: number): LuaMultiReturn<[string, string, number, number, number, number]>;
+
+declare function CastSpellByName(name: string, onSelf: boolean): void;
+
