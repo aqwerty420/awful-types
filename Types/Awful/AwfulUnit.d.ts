@@ -664,7 +664,7 @@ interface IAwfulUnit {
    */
   readonly casting9?: string;
 
-  readonly castID: number | boolean;
+  readonly castID: number | false;
 
   readonly castTarget?: IAwfulUnit;
 
@@ -681,7 +681,7 @@ interface IAwfulUnit {
    */
   readonly channeling?: LuaMultiReturn<ChannelInfo>;
 
-  readonly channelID?: number;
+  readonly channelID: number | false;
 
   /**
    * The time remaining on the object's channel, minus latency.
