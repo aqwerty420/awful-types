@@ -308,3 +308,5 @@ type ChannelInfo = [
  * @return 7 - spellId - The spell's unique identifier
  */
 declare function UnitChannelInfo(unitId: IUnitId): LuaMultiReturn<ChannelInfo>;
+
+declare function UnitPower(unitId: IUnitId, powerType: number): number;
