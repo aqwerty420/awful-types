@@ -10,6 +10,7 @@ declare const enum AwfulClasses {
   paladin = 'paladin',
   priest = 'priest',
   deathKnight = 'deathknight',
+  evoker = 'evoker',
 }
 
 declare const enum AwfulRoles {
