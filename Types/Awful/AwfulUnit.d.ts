@@ -708,7 +708,7 @@ interface IAwfulUnit {
   /**
    * The bounding radius of the object.
    */
-  readonly boundingRadius: number;
+  readonly boundingRadius: number | false;
 
   /**
    * 180 degrees angle, used for spell cast.
