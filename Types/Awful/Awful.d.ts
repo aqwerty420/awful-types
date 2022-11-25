@@ -192,6 +192,8 @@ interface IAwful {
   ): void;
 
   FightRemains(this: void): number;
+  
+  textureEscape(this: void, texture: number, size?: number, offset?: string): string;
 
   /**
    * Set to true to enable dev mode.\
