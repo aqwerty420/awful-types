@@ -269,6 +269,8 @@ interface IAwful {
 
   /* Awful wrapper to call protected functions. */
   readonly protected: IAwfulProtected;
+  
+  call(this: void, ...args: unknown[]): unknown;
 }
 
 declare const awful: IAwful;
