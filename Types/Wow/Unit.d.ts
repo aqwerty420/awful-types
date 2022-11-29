@@ -334,6 +334,6 @@ declare function UnitChannelInfo(unitId: IUnitId): LuaMultiReturn<ChannelInfo>;
     number,
     number
   ]
-> | undefined;
+>;
 
 declare function UnitPower(unitId: IUnitId, powerType: number): number;
