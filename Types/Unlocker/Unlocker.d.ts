@@ -6,9 +6,3 @@ declare const Unlocker: {
     };
   };
 };
-
-declare const CallProtectedApi: (
-  this: void,
-  func: string,
-  ...args: unknown[]
-) => unknown;
