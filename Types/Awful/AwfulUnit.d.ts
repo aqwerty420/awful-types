@@ -1085,7 +1085,7 @@ interface IAwfulPlayer extends IAwfulAlly {
    *
    * @returns False if the player doesn't have the talent, or the rank of the talent if the player has it.
    */
-  hasTalent(this: void, talent: string | number): boolean | number;
+  hasTalent(this: void, talent: string | number): false | number;
 
   hasConduit(this: void, conduitnameOrId: AwfulNameOrId): boolean;
 
