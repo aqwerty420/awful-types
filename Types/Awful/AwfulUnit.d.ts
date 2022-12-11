@@ -344,9 +344,9 @@ interface IAwfulUnit {
 
   setFocus(this: void): void;
 
-  TimeToX(this: void, percentage: number, minSamples: number): number;
+  TimeToX(this: void, percentage: number, minSamples?: number): number;
 
-  TimeToDie(this: void, minSamples: number): number;
+  TimeToDie(this: void, minSamples?: number): number;
 
   /**
    * Check if the unit exists.
