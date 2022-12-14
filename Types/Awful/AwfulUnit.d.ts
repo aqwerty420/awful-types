@@ -1019,6 +1019,10 @@ interface IAwfulUnit {
    * Must set awful.ttd_enabled to true for ttd functions / attributes to work.
    */
   readonly ttd: number;
+
+  readonly threat: ThreatStatus | undefined;
+  
+  readonly aggro: boolean;
 }
 
 interface IAwfulPlayers extends IAwfulUnit {
