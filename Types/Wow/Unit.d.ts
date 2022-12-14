@@ -309,6 +309,13 @@ type ChannelInfo = [
  */
 declare function UnitChannelInfo(unitId: IUnitId): LuaMultiReturn<ChannelInfo>;
 
+declare const enum ThreatStatus {
+  hasThreat = 0,
+  highestTreat = 1,
+  primaryTarget = 2,
+  highestAndPrimary = 3,
+}
+
 /**
  * Returns detailed info for the threat status of one unit against another. 
  *
@@ -329,7 +336,7 @@ declare function UnitChannelInfo(unitId: IUnitId): LuaMultiReturn<ChannelInfo>;
 ): LuaMultiReturn<
   [
     boolean,
-    number | undefined,
+    ThreatStatus | undefined,
     number,
     number,
     number
