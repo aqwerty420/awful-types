@@ -273,6 +273,8 @@ interface IAwful {
   readonly protected: IAwfulProtected;
   
   call(this: void, ...args: unknown[]): unknown;
+  
+  unlock<T extends (...args: any[]) => any>(this: void, name: string): T;
 }
 
 declare const awful: IAwful;
