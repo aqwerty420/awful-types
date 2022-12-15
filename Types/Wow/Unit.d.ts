@@ -343,4 +343,6 @@ declare const enum ThreatStatus {
   ]
 >;
 
+declare function UnitThreatSituation(unitId: IUnitId, otherUnit: IUnitId): ThreatStatus | undefined;
+
 declare function UnitPower(unitId: IUnitId, powerType: number): number;
