@@ -20,3 +20,5 @@
 /// <reference path="Types/Wow/Spell.d.ts" />
 /// <reference path="Types/Wow/Unit.d.ts" />
 /// <reference path="Types/Wow/Quest.d.ts" />
+
+/// <reference path="Types/BigWigs/BigWigs.d.ts" />
