@@ -242,6 +242,12 @@ interface IAwfulSpellOptions extends IAwfulSpellTraits {
   face?: boolean;
 }
 
+interface IAwfulSpellQueueParams {
+  unit?: IAwfulUnit;
+  options?: IAwfulSpellOptions;
+  duration?: number;
+}
+
 interface IAwfulSpell {
   (this: void, callback?: string, ...args: unknown[]): boolean;
   readonly baseCD: number;
@@ -277,4 +283,5 @@ interface IAwfulSpell {
     options?: IAwfulSpellTraits
   ): boolean;
   ClearCache(): void;
+  Queue(params: IAwfulSpellQueueParams): void;
 }
