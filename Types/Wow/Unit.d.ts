@@ -317,32 +317,27 @@ declare const enum ThreatStatus {
 }
 
 /**
- * Returns detailed info for the threat status of one unit against another. 
+ * Returns detailed info for the threat status of one unit against another.
  *
  * {@link https://wowpedia.fandom.com/wiki/API_UnitDetailedThreatSituation}
  *
  * @param unitId The unit's Identifier to be queried
- * 
+ *
  * @return 0 - isTanking - Returns true if the unit is the primary threat target of the mobUnit, returns false otherwise.
  * @return 1 - status - Threat status of the unit on the mobUnit.
  * @return 2 - scaledPercentage - The unit's threat percentage against mobUnit. At 100% the unit will become the primary target. This value is also scaled the closer the unit is to the mobUnit.
  * @return 3 - rawPercentage - The unit's threat percentage against mobUnit relative to the threat of mobUnit's primary target. Can be greater than 100, up to 255. Stops updating when you become the primary target.
  * @return 4 - threatValue - The unit's total threat value on the mobUnit.
  */
- declare function UnitDetailedThreatSituation(
+declare function UnitDetailedThreatSituation(
   this: void,
   unitId: IUnitId,
   otherUnit: IUnitId
-): LuaMultiReturn<
-  [
-    boolean,
-    ThreatStatus | undefined,
-    number,
-    number,
-    number
-  ]
->;
+): LuaMultiReturn<[boolean, ThreatStatus | undefined, number, number, number]>;
 
-declare function UnitThreatSituation(unitId: IUnitId, otherUnit: IUnitId): ThreatStatus | undefined;
+declare function UnitThreatSituation(
+  unitId: IUnitId,
+  otherUnit: IUnitId
+): ThreatStatus | undefined;
 
 declare function UnitPower(unitId: IUnitId, powerType: number): number;
