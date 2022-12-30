@@ -12,6 +12,10 @@
   "bugs": {
     "url": "https://github.com/aqwerty420/awful-types/issues"
   },
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint ."
+  },
   "homepage": "https://github.com/aqwerty420/awful-types#readme",
   "dependencies": {
     "@typescript-to-lua/language-extensions": "1.0.0",
