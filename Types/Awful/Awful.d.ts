@@ -229,6 +229,9 @@ interface IAwful {
   enabled: boolean;
   readonly pullTimer: number;
 
+  /** Group that contains all enemy units/players regardless of their combat status, excluding charmed enemies such as mind controlled group members. */
+  readonly allEnemies: IAwfulList<IAwfulUnit>;
+
   /** Group that does not contains player. */
   readonly group: IAwfulList<IAwfulAlly>;
 
