@@ -192,9 +192,14 @@ interface IAwful {
   ): void;
 
   FightRemains(this: void): number;
-  
-  textureEscape(this: void, texture: number, size?: number, offset?: string): string;
-  
+
+  textureEscape(
+    this: void,
+    texture: number,
+    size?: number,
+    offset?: string
+  ): string;
+
   GetObjectWithGUID(this: void, guid: string): IAwfulUnit;
 
   /**
@@ -228,6 +233,9 @@ interface IAwful {
   readonly burst: boolean;
   enabled: boolean;
   readonly pullTimer: number;
+
+  /** Group that contains all enemy units/players regardless of their combat status, excluding charmed enemies such as mind controlled group members. */
+  readonly allEnemies: IAwfulList<IAwfulUnit>;
 
   /** Group that does not contains player. */
   readonly group: IAwfulList<IAwfulAlly>;
@@ -271,9 +279,9 @@ interface IAwful {
 
   /* Awful wrapper to call protected functions. */
   readonly protected: IAwfulProtected;
-  
+
   call(this: void, ...args: unknown[]): unknown;
-  
+
   unlock<T extends (...args: any[]) => any>(this: void, name: string): T;
 }
 
