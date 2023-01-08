@@ -281,6 +281,10 @@ interface IAwful {
   readonly protected: IAwfulProtected;
 
   call(this: void, ...args: unknown[]): unknown;
+  
+  StopMoving(this: void): void;
+
+  controlMovement(this: void, duration : number, facing: boolean): void;
 
   unlock<T extends (...args: any[]) => any>(this: void, name: string): T;
 }
