@@ -284,4 +284,5 @@ interface IAwfulSpell {
   ): boolean;
   ClearCache(): void;
   Queue(params: IAwfulSpellQueueParams): void;
+  Release(options?: IAwfulSpellOptions): boolean;
 }
