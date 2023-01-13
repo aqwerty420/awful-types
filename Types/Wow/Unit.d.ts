@@ -341,3 +341,18 @@ declare function UnitThreatSituation(
 ): ThreatStatus | undefined;
 
 declare function UnitPower(unitId: IUnitId, powerType: number): number;
+
+declare const enum RaidTargetIcon {
+  star = 1,
+  circle = 2,
+  diamond = 3,
+  triangle = 4,
+  moon = 5,
+  square = 6,
+  cross = 7,
+  skull = 8,
+}
+
+declare function GetRaidTargetIndex(
+  unitId: IUnitId
+): RaidTargetIcon | undefined;

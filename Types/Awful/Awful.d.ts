@@ -281,12 +281,15 @@ interface IAwful {
   readonly protected: IAwfulProtected;
 
   call(this: void, ...args: unknown[]): unknown;
-  
+
   StopMoving(this: void): void;
 
-  controlMovement(this: void, duration : number, facing: boolean): void;
+  controlMovement(this: void, duration: number, facing: boolean): void;
 
-  unlock<T extends (...args: any[]) => any>(this: void, name: string): T;
+  unlock<T extends (...args: unknown[]) => unknown>(
+    this: void,
+    name: string
+  ): T;
 }
 
 declare const awful: IAwful;

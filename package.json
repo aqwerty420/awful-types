@@ -1,6 +1,6 @@
 {
   "name": "awful-types",
-  "version": "1.6.10",
+  "version": "1.6.11",
   "description": "Types for Awful.wtf",
   "main": "dist/index.js",
   "types": "index.d.ts",
