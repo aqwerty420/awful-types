@@ -13,6 +13,7 @@
 
 /// <reference path="Types/Unlocker/Unlocker.d.ts" />
 
+/// <reference path="Types/Wow/Events.d.ts" />
 /// <reference path="Types/Wow/Item.d.ts" />
 /// <reference path="Types/Wow/Misc.d.ts" />
 /// <reference path="Types/Wow/Pet.d.ts" />
