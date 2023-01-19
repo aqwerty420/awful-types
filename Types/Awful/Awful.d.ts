@@ -202,6 +202,12 @@ interface IAwful {
 
   GetObjectWithGUID(this: void, guid: string): IAwfulUnit;
 
+  onEvent(
+    this: void,
+    callbackFunction: AwfulUnknownEventCallback,
+    callbackEvent?: string
+  ): void;
+
   /**
    * Set to true to enable dev mode.\
    * Ignored on published rotations.
