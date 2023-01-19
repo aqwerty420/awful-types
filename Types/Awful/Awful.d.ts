@@ -67,7 +67,7 @@ declare const enum AwfulClassSpecs {
 
 type AwfulPosition = LuaMultiReturn<[number, number, number]>;
 
-type AwfulUnknownEventCallback = (this: void, ...args: unknown[]) => void;
+type AwfulUnknownEventCallback<T> = (this: void, info: T, event: string, source: IAwfulUnit | IAwfulObject, dest: IAwfulUnit  |  IAwfulObject) => void;
 
 type AwfulPath = LuaMultiReturn<[IAwfulPath, number]>;
 
@@ -161,8 +161,36 @@ interface IAwful {
 
   addEventCallback(
     this: void,
-    callbackFunction: AwfulUnknownEventCallback,
-    callbackEvent?: string
+    callbackFunction: AwfulUnknownEventCallback<any>,
+  ): void;
+
+  addEventCallback(
+    this: void,
+    callbackFunction: AwfulUnknownEventCallback<any>,
+    callbackEvent: string
+  ): void;
+
+  addEventCallback<T>(
+    this: void,
+    callbackFunction: AwfulUnknownEventCallback<T>,
+    callbackEvent: string
+  ): void;
+
+  onEvent(
+    this: void,
+    callbackFunction: AwfulUnknownEventCallback<any>,
+  ): void;
+
+  onEvent(
+    this: void,
+    callbackFunction: AwfulUnknownEventCallback<any>,
+    callbackEvent: string
+  ): void;
+
+  onEvent<T>(
+    this: void,
+    callbackFunction: AwfulUnknownEventCallback<T>,
+    callbackEvent: string
   ): void;
 
   immerseOL(this: void, list: IAwfulUnit[]): void;
@@ -201,12 +229,6 @@ interface IAwful {
   ): string;
 
   GetObjectWithGUID(this: void, guid: string): IAwfulUnit;
-
-  onEvent(
-    this: void,
-    callbackFunction: AwfulUnknownEventCallback,
-    callbackEvent?: string
-  ): void;
 
   /**
    * Set to true to enable dev mode.\
