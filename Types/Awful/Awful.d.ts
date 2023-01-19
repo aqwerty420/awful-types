@@ -308,11 +308,18 @@ interface IAwful {
   /* Awful wrapper to call protected functions. */
   readonly protected: IAwfulProtected;
 
-  call(this: void, ...args: unknown[]): unknown;
+  call(this: void, name:  string, ...args: unknown[]): unknown;
+
+  call<T extends (...args: any[]) => any>(name: string, ...args: Parameters<T>): ReturnType<T>
 
   StopMoving(this: void): void;
 
   controlMovement(this: void, duration: number, facing: boolean): void;
+
+  unlock(
+    this: void,
+    name: string
+  ): (...args: unknown[]) => unknown;
 
   unlock<T extends (...args: unknown[]) => unknown>(
     this: void,
