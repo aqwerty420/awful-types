@@ -178,6 +178,11 @@ interface IAwful {
 
   onEvent(
     this: void,
+    ...args: unknown[]
+  ): void;
+
+  onEvent(
+    this: void,
     callbackFunction: AwfulUnknownEventCallback<any>,
   ): void;
 
