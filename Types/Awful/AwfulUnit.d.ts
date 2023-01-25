@@ -1072,10 +1072,13 @@ interface IAwfulPlayers extends IAwfulUnit {
 }
 
 interface IAwfulAlly extends IAwfulPlayers {
+  /**
+   * Can only be used on players who are in your group and visible
+   */
   readonly spec: AwfulClassSpecs;
 
   /**
-   * Can only be used on players who are in your party and visible
+   * Can only be used on players who are in your group and visible
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   readonly inspect: Object;
@@ -1100,7 +1103,10 @@ interface IAwfulPlayer extends IAwfulAlly {
    */
   losCoordsLiteral(this: void, position: AwfulPosition): boolean;
 
-  readonly specialization: AwfulClassSpecs;
+  /**
+   * Your specialization index (number value)
+   */
+  readonly specialization: AwfulSpecs;
 
   readonly mainHandEnchant: boolean;
 
