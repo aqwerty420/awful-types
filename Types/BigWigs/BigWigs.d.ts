@@ -16,4 +16,3 @@ interface IBigWigsAnchorBar {
 declare const BigWigsAnchor: IBigWigsAnchor;
 
 declare const BigWigsEmphasizeAnchor: IBigWigsAnchor;
-

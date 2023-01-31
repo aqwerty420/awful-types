@@ -1021,7 +1021,7 @@ interface IAwfulUnit {
   readonly ttd: number;
 
   readonly threat: ThreatStatus | undefined;
-  
+
   readonly aggro: boolean;
 }
 

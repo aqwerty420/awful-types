@@ -96,7 +96,9 @@ declare function GetGlyphSocketInfo(
  */
 declare function GetGlyphLink(socketId: number, talentGroup?: number): string;
 
-declare function GetTalentInfo(tabIndex: number, talentIndex: number): LuaMultiReturn<[string, string, number, number, number, number]>;
+declare function GetTalentInfo(
+  tabIndex: number,
+  talentIndex: number
+): LuaMultiReturn<[string, string, number, number, number, number]>;
 
 declare function CastSpellByName(name: string, onSelf: boolean): void;
-

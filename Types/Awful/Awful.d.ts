@@ -67,7 +67,13 @@ declare const enum AwfulClassSpecs {
 
 type AwfulPosition = LuaMultiReturn<[number, number, number]>;
 
-type AwfulUnknownEventCallback<T> = (this: void, info: T, event: string, source: IAwfulUnit | IAwfulObject, dest: IAwfulUnit  |  IAwfulObject) => void;
+type AwfulUnknownEventCallback<T> = (
+  this: void,
+  info: T,
+  event: string,
+  source: IAwfulUnit | IAwfulObject,
+  dest: IAwfulUnit | IAwfulObject
+) => void;
 
 type AwfulPath = LuaMultiReturn<[IAwfulPath, number]>;
 
@@ -161,7 +167,7 @@ interface IAwful {
 
   addEventCallback(
     this: void,
-    callbackFunction: AwfulUnknownEventCallback<any>,
+    callbackFunction: AwfulUnknownEventCallback<any>
   ): void;
 
   addEventCallback(
@@ -176,10 +182,7 @@ interface IAwful {
     callbackEvent: string
   ): void;
 
-  onEvent(
-    this: void,
-    callbackFunction: AwfulUnknownEventCallback<any>,
-  ): void;
+  onEvent(this: void, callbackFunction: AwfulUnknownEventCallback<any>): void;
 
   onEvent(
     this: void,
@@ -308,18 +311,18 @@ interface IAwful {
   /* Awful wrapper to call protected functions. */
   readonly protected: IAwfulProtected;
 
-  call(this: void, name:  string, ...args: unknown[]): unknown;
+  call(this: void, name: string, ...args: unknown[]): unknown;
 
-  call<T extends (...args: any[]) => any>(name: string, ...args: Parameters<T>): ReturnType<T>
+  call<T extends (...args: any[]) => any>(
+    name: string,
+    ...args: Parameters<T>
+  ): ReturnType<T>;
 
   StopMoving(this: void): void;
 
   controlMovement(this: void, duration: number, facing: boolean): void;
 
-  unlock(
-    this: void,
-    name: string
-  ): (...args: unknown[]) => unknown;
+  unlock(this: void, name: string): (...args: unknown[]) => unknown;
 
   unlock<T extends (...args: unknown[]) => unknown>(
     this: void,
