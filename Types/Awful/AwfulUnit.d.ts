@@ -347,6 +347,8 @@ interface IAwfulUnit {
   TimeToX(this: void, percentage: number, minSamples?: number): number;
 
   TimeToDie(this: void, minSamples?: number): number;
+  
+  readonly unit: string;
 
   /**
    * Check if the unit exists.
