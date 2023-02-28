@@ -67,7 +67,13 @@ declare const enum AwfulClassSpecs {
 
 type AwfulPosition = LuaMultiReturn<[number, number, number]>;
 
-type AwfulUnknownEventCallback<T> = (this: void, info: T, event: string, source: IAwfulUnit | IAwfulObject, dest: IAwfulUnit  |  IAwfulObject) => void;
+type AwfulUnknownEventCallback<T> = (
+  this: void,
+  info: T,
+  event: string,
+  source: IAwfulUnit | IAwfulObject,
+  dest: IAwfulUnit | IAwfulObject
+) => void;
 
 type AwfulPath = LuaMultiReturn<[IAwfulPath, number]>;
 
@@ -85,16 +91,8 @@ type AwfulAlertOptions = {
   imgScale?: number;
 };
 
-declare interface IAwfulProtected {
-  RunMacroText(this: void, text: string): void;
-
-  //TargetUnit: typeof TargetUnit;
-  //UseInventoryItem: typeof UseInventoryItem;
-
-  PetAttack: typeof PetAttack;
-
-  //AttackTarget: typeof AttackTarget;
-  //UseItemByName: typeof UseItemByName;
+interface IAwfulDelay {
+  now: number;
 }
 
 interface IAwfulPath extends LuaMultiReturn<[AwfulPosition[], number]> {
@@ -161,12 +159,12 @@ interface IAwful {
 
   addEventCallback(
     this: void,
-    callbackFunction: AwfulUnknownEventCallback<any>,
+    callbackFunction: AwfulUnknownEventCallback<unknown>
   ): void;
 
   addEventCallback(
     this: void,
-    callbackFunction: AwfulUnknownEventCallback<any>,
+    callbackFunction: AwfulUnknownEventCallback<unknown>,
     callbackEvent: string
   ): void;
 
@@ -178,12 +176,12 @@ interface IAwful {
 
   onEvent(
     this: void,
-    callbackFunction: AwfulUnknownEventCallback<any>,
+    callbackFunction: AwfulUnknownEventCallback<unknown>
   ): void;
 
   onEvent(
     this: void,
-    callbackFunction: AwfulUnknownEventCallback<any>,
+    callbackFunction: AwfulUnknownEventCallback<unknown>,
     callbackEvent: string
   ): void;
 
@@ -238,6 +236,8 @@ interface IAwful {
 
   /** Set to true to enable time to die features. */
   ttd_enabled: boolean;
+
+  delay(this: void, min: number, max: number, frequency?: number): IAwfulDelay;
 
   readonly UI: IAwfulUi;
   readonly Actor: IAwfulActor;
@@ -305,21 +305,18 @@ interface IAwful {
   /** Triggers around the player. */
   readonly triggers: IAwfulList<IAwfulTrigger>;
 
-  /* Awful wrapper to call protected functions. */
-  readonly protected: IAwfulProtected;
+  call(this: void, name: string, ...args: unknown[]): unknown;
 
-  call(this: void, name:  string, ...args: unknown[]): unknown;
-
-  call<T extends (...args: any[]) => any>(name: string, ...args: Parameters<T>): ReturnType<T>
+  call<T extends (...args: unknown[]) => unknown>(
+    name: string,
+    ...args: Parameters<T>
+  ): ReturnType<T>;
 
   StopMoving(this: void): void;
 
   controlMovement(this: void, duration: number, facing: boolean): void;
 
-  unlock(
-    this: void,
-    name: string
-  ): (...args: unknown[]) => unknown;
+  unlock(this: void, name: string): (...args: unknown[]) => unknown;
 
   unlock<T extends (...args: unknown[]) => unknown>(
     this: void,
