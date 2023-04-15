@@ -126,9 +126,24 @@ interface IAwfulContainsTab {
   Tab(name: string): IAwfulTab;
 }
 
+type AwfulButtonTextCallback = (state: boolean) => string;
+
+interface IAwfulButtonTextModes {
+  enabled: string;
+  disabled: string;
+}
+
+interface IAwfulButtonParams {
+  spellId: number;
+  var: string;
+  text: string | AwfulButtonTextCallback | IAwfulButtonTextModes;
+  size?: number;
+}
+
 interface IAwfulStatusFrame {
   Toggle(params: IAwfulToggleParams): void;
   String(params: IAwfulStringParams): void;
+  Button(params: IAwfulButtonParams): void;
   Hide(): void;
   Show(): void;
 }

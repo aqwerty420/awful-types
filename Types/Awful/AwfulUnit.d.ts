@@ -348,6 +348,24 @@ interface IAwfulUnit {
 
   TimeToDie(this: void, minSamples?: number): number;
 
+  /**
+   * Number of units attacking the unit
+   * @return 0 - total
+   * @return 1 - melee
+   * @return 2 - ranged
+   * @return 3 - cooldowns
+   */
+  v2attackers(this: void): LuaMultiReturn<[number, number, number, number]>;
+
+  predictLoSOf(this: void, unit: IAwfulUnit, elapsed: number): boolean;
+
+  predictLoSOf(this: void, elapsed: number): boolean;
+
+  /**
+   * Value between 0-255 based on their scaled threat percentage if they are on the threat table, returning -1 with no threat
+   */
+  threatWith(this: void, unit: IAwfulUnit): number;
+
   readonly unit: string;
 
   /**
@@ -1029,6 +1047,11 @@ interface IAwfulUnit {
   readonly hpPlusAbsorbs: number;
 
   readonly hpa: number;
+
+  /**
+   * Time the target has been in your los, 0 if out of los
+   */
+  readonly timeInLoS: number;
 }
 
 interface IAwfulPlayers extends IAwfulUnit {

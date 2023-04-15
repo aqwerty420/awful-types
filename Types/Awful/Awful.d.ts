@@ -299,6 +299,10 @@ interface IAwful {
   /** Shades of the M+ Spiteful affix. */
   readonly shades: IAwfulList<IAwfulUnit>;
 
+  readonly tyrants: IAwfulList<IAwfulUnit>;
+
+  readonly wwclones: IAwfulList<IAwfulUnit>;
+
   /** Objects around the player. */
   readonly objects: IAwfulList<IAwfulObject>;
 

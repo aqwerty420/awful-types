@@ -75,6 +75,13 @@ interface IAwfulDrawer {
     l: number,
     rotation: number
   ): void;
+  Cylinder(
+    x: number,
+    y: number,
+    z: number,
+    radius: number,
+    height: number
+  ): void;
 }
 interface IAwfulDrawTexture {
   /* Use wow api GetSpellTexture to get texture  */
