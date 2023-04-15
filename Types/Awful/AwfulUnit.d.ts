@@ -347,7 +347,7 @@ interface IAwfulUnit {
   TimeToX(this: void, percentage: number, minSamples?: number): number;
 
   TimeToDie(this: void, minSamples?: number): number;
-  
+
   readonly unit: string;
 
   /**
@@ -1023,8 +1023,12 @@ interface IAwfulUnit {
   readonly ttd: number;
 
   readonly threat: ThreatStatus | undefined;
-  
+
   readonly aggro: boolean;
+
+  readonly hpPlusAbsorbs: number;
+
+  readonly hpa: number;
 }
 
 interface IAwfulPlayers extends IAwfulUnit {
