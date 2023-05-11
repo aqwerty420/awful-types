@@ -1,24 +1,24 @@
 declare const enum AwfulClasses {
-  warrior = 'warrior',
-  warlock = 'warlock',
-  shaman = 'shaman',
-  rogue = 'rogue',
-  druid = 'druid',
-  hunter = 'hunter',
-  mage = 'mage',
-  monk = 'monk',
-  paladin = 'paladin',
-  priest = 'priest',
-  deathKnight = 'deathknight',
-  evoker = 'evoker',
+  Warrior = 'warrior',
+  Warlock = 'warlock',
+  Shaman = 'shaman',
+  Rogue = 'rogue',
+  Druid = 'druid',
+  Hunter = 'hunter',
+  Mage = 'mage',
+  Monk = 'monk',
+  Paladin = 'paladin',
+  Priest = 'priest',
+  DeathKnight = 'deathknight',
+  Evoker = 'evoker',
 }
 
 declare const enum AwfulRoles {
-  healer = 'healer',
-  melee = 'melee',
-  ranged = 'ranged',
-  tank = 'tank',
-  pet = 'pet',
+  Healer = 'healer',
+  Melee = 'melee',
+  Ranged = 'ranged',
+  Tank = 'tank',
+  Pet = 'pet',
 }
 
 declare const enum AwfulSpecs {
@@ -29,40 +29,40 @@ declare const enum AwfulSpecs {
 }
 
 declare const enum AwfulClassSpecs {
-  blood = 'Blood',
-  frost = 'Frost',
-  unholy = 'Unholy',
-  havoc = 'Havoc',
-  vengeance = 'Vengeance',
-  balance = 'Balance',
-  feral = 'Feral',
-  guardian = 'Guardian',
-  restoration = 'Restoration',
-  beastMastery = 'Beast Mastery',
-  marksmanship = 'Marksmanship',
-  survival = 'Survival',
-  arcane = 'Arcane',
-  fire = 'Fire',
-  brewmaster = 'Brewmaster',
-  mistweaver = 'Mistweaver',
-  windwalker = 'Windwalker',
-  holy = 'Holy',
-  protection = 'Protection',
-  retribution = 'Retribution',
-  discipline = 'Discipline',
-  shadow = 'Shadow',
-  assassination = 'Assassination',
-  outlaw = 'Outlaw',
-  subtlety = 'Subtlety',
-  elemental = 'Elemental',
-  enhancement = 'Enhancement',
-  affliction = 'Affliction',
-  demonology = 'Demonology',
-  destruction = 'Destruction',
-  arms = 'Arms',
-  fury = 'Fury',
-  devastation = 'Devastation',
-  preservation = 'Preservation',
+  Blood = 'Blood',
+  Frost = 'Frost',
+  Unholy = 'Unholy',
+  Havoc = 'Havoc',
+  Vengeance = 'Vengeance',
+  Balance = 'Balance',
+  Feral = 'Feral',
+  Guardian = 'Guardian',
+  Restoration = 'Restoration',
+  BeastMastery = 'Beast Mastery',
+  Marksmanship = 'Marksmanship',
+  Survival = 'Survival',
+  Arcane = 'Arcane',
+  Fire = 'Fire',
+  Brewmaster = 'Brewmaster',
+  Mistweaver = 'Mistweaver',
+  Windwalker = 'Windwalker',
+  Holy = 'Holy',
+  Protection = 'Protection',
+  Retribution = 'Retribution',
+  Discipline = 'Discipline',
+  Shadow = 'Shadow',
+  Assassination = 'Assassination',
+  Outlaw = 'Outlaw',
+  Subtlety = 'Subtlety',
+  Elemental = 'Elemental',
+  Enhancement = 'Enhancement',
+  Affliction = 'Affliction',
+  Demonology = 'Demonology',
+  Destruction = 'Destruction',
+  Arms = 'Arms',
+  Fury = 'Fury',
+  Devastation = 'Devastation',
+  Preservation = 'Preservation',
 }
 
 type AwfulPosition = LuaMultiReturn<[number, number, number]>;
@@ -71,13 +71,11 @@ type AwfulUnknownEventCallback<T> = (
   this: void,
   info: T,
   event: string,
-  source: IAwfulUnit | IAwfulObject,
-  dest: IAwfulUnit | IAwfulObject
+  source: AwfulUnit | AwfulObject,
+  dest: AwfulUnit | AwfulObject
 ) => void;
 
-type AwfulPath = LuaMultiReturn<[IAwfulPath, number]>;
-
-type AwfulPathOrFalse = IAwfulPath | false;
+type AwfulPathReturn = LuaMultiReturn<[AwfulPath, number]> | false;
 
 type AwfulAlertOptions = {
   message?: string;
@@ -91,29 +89,29 @@ type AwfulAlertOptions = {
   imgScale?: number;
 };
 
-interface IAwfulDelay {
+interface AwfulDelay {
   now: number;
 }
 
-interface IAwfulPath extends LuaMultiReturn<[AwfulPosition[], number]> {
+interface AwfulPath extends LuaMultiReturn<[AwfulPosition[], number]> {
   simplify(
     this: void,
     tolerance: number,
     highestQuality: number
-  ): AwfulPathOrFalse;
+  ): AwfulPathReturn;
 
-  draw(this: void): IAwfulDraw;
+  draw(this: void): AwfulDraw;
 
   follow(this: void): void;
 }
 
-interface IAwful {
+interface Awful {
   // path if using two AwfulPositions
   path(
     this: void,
     player: AwfulPosition,
     target: AwfulPosition
-  ): AwfulPathOrFalse;
+  ): AwfulPathReturn;
 
   // path if using two coord sets
   path(
@@ -124,7 +122,7 @@ interface IAwful {
     x2: number,
     y2: number,
     z2: number
-  ): AwfulPathOrFalse;
+  ): AwfulPathReturn;
 
   // path if using 1 AwfulPosition and 1 Coord set
   path(
@@ -133,7 +131,7 @@ interface IAwful {
     x2: number,
     y2: number,
     z2: number
-  ): AwfulPathOrFalse;
+  ): AwfulPathReturn;
 
   // path if using 1 coord set and 1 AwfulPosition
   path(
@@ -142,18 +140,18 @@ interface IAwful {
     y: number,
     z: number,
     target: AwfulPosition
-  ): AwfulPathOrFalse;
+  ): AwfulPathReturn;
 
   NewSpell(
     this: void,
     spellId: number | number[],
-    spellTraits?: IAwfulSpellTraits
-  ): IAwfulSpell;
+    spellTraits?: AwfulSpellTraits
+  ): AwfulSpell;
 
   NewItem(
     this: void,
     itemIds: number | number[] | string | string[]
-  ): IAwfulItem;
+  ): AwfulItem;
 
   Populate(this: void, ...args: unknown[]): void;
 
@@ -191,7 +189,7 @@ interface IAwful {
     callbackEvent: string
   ): void;
 
-  immerseOL(this: void, list: IAwfulUnit[]): void;
+  immerseOL(this: void, list: AwfulUnit[]): void;
 
   addUpdateCallback(
     this: void,
@@ -203,8 +201,8 @@ interface IAwful {
 
   Draw(
     this: void,
-    callback: (this: void, draw: IAwfulDrawer) => void
-  ): IAwfulDraw;
+    callback: (this: void, draw: AwfulDrawer) => void
+  ): AwfulDraw;
 
   //Command(this: void, command: string, e: boolean): Command;
 
@@ -214,7 +212,7 @@ interface IAwful {
 
   hookSpellCasts(
     this: void,
-    callback: (this: void, spell?: IAwfulSpell, key?: string) => void
+    callback: (this: void, spell?: AwfulSpell, key?: string) => void
   ): void;
 
   FightRemains(this: void): number;
@@ -226,7 +224,7 @@ interface IAwful {
     offset?: string
   ): string;
 
-  GetObjectWithGUID(this: void, guid: string): IAwfulUnit;
+  GetObjectWithGUID(this: void, guid: string): AwfulUnit;
 
   /**
    * Set to true to enable dev mode.\
@@ -237,18 +235,18 @@ interface IAwful {
   /** Set to true to enable time to die features. */
   ttd_enabled: boolean;
 
-  delay(this: void, min: number, max: number, frequency?: number): IAwfulDelay;
+  delay(this: void, min: number, max: number, frequency?: number): AwfulDelay;
 
-  readonly UI: IAwfulUi;
-  readonly Actor: IAwfulActor;
-  readonly player: IAwfulPlayer;
-  readonly target: IAwfulUnit;
-  readonly focus: IAwfulUnit;
-  readonly healer: IAwfulAlly;
-  readonly enemyHealer: IAwfulPlayers;
-  readonly pet: IAwfulUnit;
-  readonly [key: `arena${number}`]: IAwfulPlayers;
-  readonly [key: `party${number}`]: IAwfulAlly;
+  readonly UI: AwfulUi;
+  readonly Actor: AwfulActor;
+  readonly player: AwfulPlayer;
+  readonly target: AwfulUnit;
+  readonly focus: AwfulUnit;
+  readonly healer: AwfulAlly;
+  readonly enemyHealer: AwfulPlayers;
+  readonly pet: AwfulUnit;
+  readonly [key: `arena${number}`]: AwfulPlayers;
+  readonly [key: `party${number}`]: AwfulAlly;
   readonly time: number;
   readonly buffer: number;
   readonly latency: number;
@@ -263,51 +261,51 @@ interface IAwful {
   readonly pullTimer: number;
 
   /** Group that contains all enemy units/players regardless of their combat status, excluding charmed enemies such as mind controlled group members. */
-  readonly allEnemies: IAwfulList<IAwfulUnit>;
+  readonly allEnemies: AwfulList<AwfulUnit>;
 
   /** Group that does not contains player. */
-  readonly group: IAwfulList<IAwfulAlly>;
+  readonly group: AwfulList<AwfulAlly>;
 
   /** Group that contains player. */
-  readonly fGroup: IAwfulList<IAwfulAlly>;
+  readonly fGroup: AwfulList<AwfulAlly>;
 
   /** Group that contains player. */
-  readonly fullGroup: IAwfulList<IAwfulAlly>;
+  readonly fullGroup: AwfulList<AwfulAlly>;
 
   /** Enemies around the player. */
-  readonly enemies: IAwfulList<IAwfulUnit>;
+  readonly enemies: AwfulList<AwfulUnit>;
 
   /** Friendly units around the player. */
-  readonly friends: IAwfulList<IAwfulAlly>;
+  readonly friends: AwfulList<AwfulAlly>;
 
   /** Totems around the player. */
-  readonly totems: IAwfulList<IAwfulUnit>;
+  readonly totems: AwfulList<AwfulUnit>;
 
-  readonly seeds: IAwfulList<IAwfulUnit>;
+  readonly seeds: AwfulList<AwfulUnit>;
 
   /** Units around the player. */
-  readonly units: IAwfulList<IAwfulUnit>;
+  readonly units: AwfulList<AwfulUnit>;
 
-  readonly pets: IAwfulList<IAwfulUnit>;
+  readonly pets: AwfulList<AwfulUnit>;
 
   /** Other players around the player. */
-  readonly players: IAwfulList<IAwfulPlayers>;
+  readonly players: AwfulList<AwfulPlayers>;
 
   /** Explosives of the M+ Explosive affix. */
-  readonly explosives: IAwfulList<IAwfulUnit>;
+  readonly explosives: AwfulList<AwfulUnit>;
 
   /** Shades of the M+ Spiteful affix. */
-  readonly shades: IAwfulList<IAwfulUnit>;
+  readonly shades: AwfulList<AwfulUnit>;
 
-  readonly tyrants: IAwfulList<IAwfulUnit>;
+  readonly tyrants: AwfulList<AwfulUnit>;
 
-  readonly wwclones: IAwfulList<IAwfulUnit>;
+  readonly wwclones: AwfulList<AwfulUnit>;
 
   /** Objects around the player. */
-  readonly objects: IAwfulList<IAwfulObject>;
+  readonly objects: AwfulList<AwfulObject>;
 
   /** Triggers around the player. */
-  readonly triggers: IAwfulList<IAwfulTrigger>;
+  readonly triggers: AwfulList<AwfulTrigger>;
 
   call(this: void, name: string, ...args: unknown[]): unknown;
 
@@ -328,6 +326,6 @@ interface IAwful {
   ): T;
 }
 
-declare const awful: IAwful;
+declare const awful: Awful;
 
 declare function getfenv(n: number): unknown;

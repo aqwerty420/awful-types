@@ -1,8 +1,8 @@
-interface IBigWigsAnchor {
-  bars: LuaPairsKeyIterable<IBigWigsAnchorBar>;
+interface BigWigsAnchor {
+  bars: LuaPairsKeyIterable<BigWigsAnchorBar>;
 }
 
-interface IBigWigsAnchorBar {
+interface BigWigsAnchorBar {
   candyBarLabel: {
     text: string;
   };
@@ -13,7 +13,6 @@ interface IBigWigsAnchorBar {
   start: number;
 }
 
-declare const BigWigsAnchor: IBigWigsAnchor;
+declare const BigWigsAnchor: BigWigsAnchor;
 
-declare const BigWigsEmphasizeAnchor: IBigWigsAnchor;
-
+declare const BigWigsEmphasizeAnchor: BigWigsAnchor;

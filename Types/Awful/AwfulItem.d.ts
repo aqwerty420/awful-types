@@ -1,4 +1,4 @@
-interface IAwfulItem {
+interface AwfulItem {
   readonly numEquipped: number;
   readonly equipped: boolean;
   readonly casttimeraw: number;
@@ -9,7 +9,7 @@ interface IAwfulItem {
   readonly range: number;
   readonly cooldown: number;
   readonly id: number;
-  Use(unit?: IAwfulUnit): boolean;
-  UseAoE(unit: IAwfulUnit): boolean;
+  Use(unit?: AwfulUnit): boolean;
+  UseAoE(unit: AwfulUnit): boolean;
   UseAoE(x: number, y: number, z: number): boolean;
 }

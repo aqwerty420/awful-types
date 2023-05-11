@@ -8,14 +8,14 @@ type AwfulEventCallbackString = (this: void) => string;
 
 type AwfulSettings = LuaTable<string, unknown>;
 
-interface IAwfulCheckboxParams {
+interface AwfulCheckboxParams {
   text: string;
   var: string;
   default?: boolean;
   tooltip?: string;
 }
 
-interface IAwfulColorParams {
+interface AwfulColorOptions {
   title?: AwfulColor | AwfulColor[];
   primary?: AwfulColor;
   accent?: AwfulColor;
@@ -23,14 +23,14 @@ interface IAwfulColorParams {
   tertiary?: AwfulColor;
 }
 
-interface IAwfulDropdownOptions {
+interface AwfulDropdownOptions {
   label: string;
   value: string | number;
   tooltip?: string;
 }
 
-interface IAwfulDropdownParams {
-  options: IAwfulDropdownOptions[];
+interface AwfulDropdownParams {
+  options: AwfulDropdownOptions[];
   var: string;
   header?: string;
   multi?: boolean;
@@ -39,13 +39,13 @@ interface IAwfulDropdownParams {
   tooltip?: string;
 }
 
-interface IAwfulGroupParams {
+interface AwfulGroupParams {
   name: string;
   title?: string | string[];
-  colors?: IAwfulColorParams;
+  colors?: AwfulColorOptions;
 }
 
-interface IAwfulSliderParams {
+interface AwfulSliderParams {
   text: string;
   var: string;
   min?: number;
@@ -56,7 +56,7 @@ interface IAwfulSliderParams {
   tooltip?: string;
 }
 
-interface IAwfulStatusFrameParams {
+interface AwfulStatusFrameParams {
   colors?: {
     enabled?: AwfulColor;
     disabled?: AwfulColor;
@@ -69,11 +69,11 @@ interface IAwfulStatusFrameParams {
   column?: boolean;
 }
 
-interface IAwfulStringParams {
+interface AwfulStringParams {
   var: string;
 }
 
-interface IAwfulTextParams {
+interface AwfulTextParams {
   text: string;
   header?: boolean;
   size?: number;
@@ -84,16 +84,16 @@ interface IAwfulTextParams {
   OnClick?: AwfulEventCallback;
 }
 
-interface IAwfulToggleParams {
+interface AwfulToggleParams {
   label: string;
   var: string;
   valueText?: AwfulEventCallbackString;
   onClick: AwfulEventCallback;
 }
 
-interface IAwfulUiParams {
+interface AwfulUiParams {
   title?: string | string[];
-  colors?: IAwfulColorParams;
+  colors?: AwfulColorOptions;
   width?: number;
   height?: number;
   scale?: number;
@@ -111,51 +111,51 @@ interface IAwfulUiParams {
   tabs_w?: number;
 }
 
-interface IAwfulTab {
-  Checkbox(params: IAwfulCheckboxParams): void;
-  Text(params: IAwfulTextParams): void;
-  Slider(params: IAwfulSliderParams): void;
-  Dropdown(params: IAwfulDropdownParams): void;
+interface AwfulTab {
+  Checkbox(params: AwfulCheckboxParams): void;
+  Text(params: AwfulTextParams): void;
+  Slider(params: AwfulSliderParams): void;
+  Dropdown(params: AwfulDropdownParams): void;
 }
 
-interface IAwfulCommand {
+interface AwfulCommand {
   New(callback: AwfulCommandCallback): void;
 }
 
-interface IAwfulContainsTab {
-  Tab(name: string): IAwfulTab;
+interface AwfulContainsTab {
+  Tab(name: string): AwfulTab;
 }
 
 type AwfulButtonTextCallback = (state: boolean) => string;
 
-interface IAwfulButtonTextModes {
+interface AwfulButtonTextModes {
   enabled: string;
   disabled: string;
 }
 
-interface IAwfulButtonParams {
+interface AwfulButtonParams {
   spellId: number;
   var: string;
-  text: string | AwfulButtonTextCallback | IAwfulButtonTextModes;
+  text: string | AwfulButtonTextCallback | AwfulButtonTextModes;
   size?: number;
 }
 
-interface IAwfulStatusFrame {
-  Toggle(params: IAwfulToggleParams): void;
-  String(params: IAwfulStringParams): void;
-  Button(params: IAwfulButtonParams): void;
+interface AwfulStatusFrame {
+  Toggle(params: AwfulToggleParams): void;
+  String(params: AwfulStringParams): void;
+  Button(params: AwfulButtonParams): void;
   Hide(): void;
   Show(): void;
 }
 
-interface IAwfulGUi extends IAwfulContainsTab {
-  Group(params: IAwfulGroupParams): IAwfulContainsTab;
-  StatusFrame(params?: IAwfulStatusFrameParams): IAwfulStatusFrame;
+interface AwfulGUi extends AwfulContainsTab {
+  Group(params: AwfulGroupParams): AwfulContainsTab;
+  StatusFrame(params?: AwfulStatusFrameParams): AwfulStatusFrame;
 }
 
-interface IAwfulUi {
+interface AwfulUi {
   New(
     name: string,
-    params?: IAwfulUiParams
-  ): LuaMultiReturn<[IAwfulGUi, AwfulSettings, IAwfulCommand]>;
+    params?: AwfulUiParams
+  ): LuaMultiReturn<[AwfulGUi, AwfulSettings, AwfulCommand]>;
 }

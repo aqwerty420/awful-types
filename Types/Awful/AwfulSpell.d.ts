@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 declare const enum AwfulSpellType {
-  physical = 'physical',
-  magic = 'magic',
-  both = 'both',
+  Physical = 'physical',
+  Magic = 'magic',
+  Both = 'both',
 }
 
-interface IAwfulPowerTypes {
+interface AwfulPowerTypes {
   mana: number;
   rage: number;
   focus: number;
@@ -34,24 +34,24 @@ declare const enum CCType {
   /**
    * avoids Icebound Fortitude, Ice Form, etc.
    */
-  stun = 'stun',
+  Stun = 'stun',
   /**
    * avoids Lichborne.
    */
-  charm = 'charm',
+  Charm = 'charm',
   /**
    * avoids Lichborne, druid forms, etc.
    */
-  polymorph = 'polymorph',
+  Polymorph = 'polymorph',
 }
 
 type AwfulSpellCallback = (
   this: void,
-  spell: IAwfulSpell,
+  spell: AwfulSpell,
   ...args: any[]
 ) => void;
 
-interface IAwfulSpellTraits {
+interface AwfulSpellTraits {
   /**
    * For AoE Spells - The diameter or of the AoE reticle.\
    * Otherwise you can use the radius.\
@@ -192,7 +192,7 @@ interface IAwfulSpellTraits {
    * you must be extremely careful what you do inside of it to avoid performance issues
    */
   filter?: (
-    obj: IAwfulUnit | IAwfulAlly | IAwfulPlayers,
+    obj: AwfulUnit | AwfulAlly | AwfulPlayers,
     estDist: number,
     castPosition: AwfulPosition
   ) => boolean | string;
@@ -224,14 +224,14 @@ interface IAwfulSpellTraits {
    *  to filter through (keep in mind, you should only pass this trait at cast time, not
    *  when initializing new spell object, otherwise the list will become stale)
    */
-  units?: IAwfulList<IAwfulUnit | IAwfulPlayers | IAwfulAlly>;
+  units?: AwfulList<AwfulUnit | AwfulPlayers | AwfulAlly>;
   /**
    * If you want to cast by ID, to cast a lower rank version of a spell for example
    */
   castByID?: boolean;
 }
 
-interface IAwfulSpellOptions extends IAwfulSpellTraits {
+interface AwfulSpellOptions extends AwfulSpellTraits {
   /**
    * stops moving to begin the cast
    */
@@ -242,13 +242,13 @@ interface IAwfulSpellOptions extends IAwfulSpellTraits {
   face?: boolean;
 }
 
-interface IAwfulSpellQueueParams {
-  unit?: IAwfulUnit;
-  options?: IAwfulSpellOptions;
+interface AwfulSpellQueueParams {
+  unit?: AwfulUnit;
+  options?: AwfulSpellOptions;
   duration?: number;
 }
 
-interface IAwfulSpell {
+interface AwfulSpell {
   (this: void, callback?: string, ...args: unknown[]): boolean;
   readonly baseCD: number;
   readonly castTime: number;
@@ -257,7 +257,7 @@ interface IAwfulSpell {
   readonly chargesFrac: number;
   readonly chargesMax: number;
   readonly nextChargeCD: number;
-  readonly cost: IAwfulPowerTypes;
+  readonly cost: AwfulPowerTypes;
   readonly damage: number;
   readonly effect: number;
   readonly flying: boolean;
@@ -269,20 +269,20 @@ interface IAwfulSpell {
   range: number;
   readonly usable: boolean;
   used(this: void, time: number): boolean;
-  inRange(this: void, unit: IAwfulUnit): boolean;
+  inRange(this: void, unit: AwfulUnit): boolean;
   Callback(key: string, func: AwfulSpellCallback): void;
   Callback(func: AwfulSpellCallback): void;
-  Cast(options?: IAwfulSpellOptions): boolean;
-  Cast(unit: IAwfulUnit, options?: IAwfulSpellOptions): boolean;
-  Castable(options?: IAwfulSpellTraits): boolean;
-  Castable(unit: IAwfulUnit, options?: IAwfulSpellTraits): boolean;
+  Cast(options?: AwfulSpellOptions): boolean;
+  Cast(unit: AwfulUnit, options?: AwfulSpellOptions): boolean;
+  Castable(options?: AwfulSpellTraits): boolean;
+  Castable(unit: AwfulUnit, options?: AwfulSpellTraits): boolean;
   AoECast(x: number, y: number, z: number): boolean;
-  AoECast(unit: IAwfulUnit): boolean;
+  AoECast(unit: AwfulUnit): boolean;
   SmartAoE(
-    posOrUnit: IAwfulUnit | AwfulPosition,
-    options?: IAwfulSpellTraits
+    posOrUnit: AwfulUnit | AwfulPosition,
+    options?: AwfulSpellTraits
   ): boolean;
   ClearCache(): void;
-  Queue(params: IAwfulSpellQueueParams): void;
-  Release(options?: IAwfulSpellOptions): boolean;
+  Queue(params: AwfulSpellQueueParams): void;
+  Release(options?: AwfulSpellOptions): boolean;
 }

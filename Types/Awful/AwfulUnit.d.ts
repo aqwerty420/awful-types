@@ -1,7 +1,3 @@
-type AwfulNameOrId = string | number;
-
-type AwfulNamesOrIds = AwfulNameOrId[];
-
 /**
  * [id, name, remains, drCat, sourceGUID]
  */
@@ -9,30 +5,23 @@ type CCInfo = [number, string, number, string, number];
 
 type CCInfoList = readonly CCInfo[];
 
-declare const enum Covenants {
-  kyrian = 'Kyrian',
-  necrolord = 'Necrolord',
-  nightFae = 'Night Fae',
-  venthyr = 'Venthyr',
-}
-
-interface IAwfulMovingParams {
+interface AwfulMovingParams {
   angle?: number;
   duration?: number;
 }
 
-interface IAwfulUnit {
-  canAttack(this: void, unit: IAwfulUnit): boolean;
+interface AwfulUnit {
+  canAttack(this: void, unit: AwfulUnit): boolean;
 
   /**
    * Compares the object with another to determine if they're the same
    */
-  isUnit(this: void, unit: IAwfulUnit): boolean;
+  isUnit(this: void, unit: AwfulUnit): boolean;
 
   /**
    * Checks if the unit is friends with another unit
    */
-  friendOf(this: void, unit: IAwfulUnit): boolean;
+  friendOf(this: void, unit: AwfulUnit): boolean;
 
   /**
    * Provides information about a specific buff on the object
@@ -46,8 +35,8 @@ interface IAwfulUnit {
    */
   buff(
     this: void,
-    nameOrId: AwfulNameOrId,
-    sourceUnit?: IAwfulUnit
+    nameOrId: string | number,
+    sourceUnit?: AwfulUnit
   ): LuaMultiReturn<Aura> | undefined;
 
   /**
@@ -58,8 +47,8 @@ interface IAwfulUnit {
    */
   buffRemains(
     this: void,
-    nameOrId: AwfulNameOrId,
-    sourceUnit?: IAwfulUnit
+    nameOrId: string | number,
+    sourceUnit?: AwfulUnit
   ): number;
 
   /**
@@ -70,8 +59,8 @@ interface IAwfulUnit {
    */
   buffStacks(
     this: void,
-    nameOrId: AwfulNameOrId,
-    sourceUnit?: IAwfulUnit
+    nameOrId: string | number,
+    sourceUnit?: AwfulUnit
   ): number;
 
   /**
@@ -82,8 +71,8 @@ interface IAwfulUnit {
    */
   buffUptime(
     this: void,
-    nameOrId: AwfulNameOrId,
-    sourceUnit?: IAwfulUnit
+    nameOrId: string | number,
+    sourceUnit?: AwfulUnit
   ): number;
 
   /**
@@ -94,8 +83,8 @@ interface IAwfulUnit {
    */
   buffFrom(
     this: void,
-    namesOrIds: AwfulNamesOrIds,
-    sourceUnit?: IAwfulUnit
+    namesOrIds: string[] | number[],
+    sourceUnit?: AwfulUnit
   ): Aura[];
 
   /**
@@ -106,8 +95,8 @@ interface IAwfulUnit {
    */
   buffsFrom(
     this: void,
-    namesOrIds: AwfulNamesOrIds,
-    sourceUnit?: IAwfulUnit
+    namesOrIds: string[] | number[],
+    sourceUnit?: AwfulUnit
   ): number;
 
   /**
@@ -121,8 +110,8 @@ interface IAwfulUnit {
    */
   debuff(
     this: void,
-    nameOrId: AwfulNameOrId,
-    sourceUnit?: IAwfulUnit
+    nameOrId: string | number,
+    sourceUnit?: AwfulUnit
   ): LuaMultiReturn<Aura> | undefined;
 
   /**
@@ -133,8 +122,8 @@ interface IAwfulUnit {
    */
   debuffRemains(
     this: void,
-    nameOrId: AwfulNameOrId,
-    sourceUnit?: IAwfulUnit
+    nameOrId: string | number,
+    sourceUnit?: AwfulUnit
   ): number;
 
   /**
@@ -145,8 +134,8 @@ interface IAwfulUnit {
    */
   debuffStacks(
     this: void,
-    nameOrId: AwfulNameOrId,
-    sourceUnit?: IAwfulUnit
+    nameOrId: string | number,
+    sourceUnit?: AwfulUnit
   ): number;
 
   /**
@@ -157,8 +146,8 @@ interface IAwfulUnit {
    */
   debuffUptime(
     this: void,
-    nameOrId: AwfulNameOrId,
-    sourceUnit?: IAwfulUnit
+    nameOrId: string | number,
+    sourceUnit?: AwfulUnit
   ): number;
 
   /**
@@ -169,8 +158,8 @@ interface IAwfulUnit {
    */
   debuffFrom(
     this: void,
-    namesOrIds: AwfulNamesOrIds,
-    sourceUnit?: IAwfulUnit
+    namesOrIds: string[] | number[],
+    sourceUnit?: AwfulUnit
   ): Aura[];
 
   /**
@@ -181,8 +170,8 @@ interface IAwfulUnit {
    */
   debuffsFrom(
     this: void,
-    namesOrIds: AwfulNamesOrIds,
-    sourceUnit?: IAwfulUnit
+    namesOrIds: string[] | number[],
+    sourceUnit?: AwfulUnit
   ): number;
 
   /**
@@ -190,7 +179,7 @@ interface IAwfulUnit {
    *
    * @param nameOrId The name or id of the spell to check
    */
-  cooldown(this: void, nameOrId: AwfulNameOrId): number;
+  cooldown(this: void, nameOrId: string | number): number;
 
   /**
    * Checks if the Unit has cast the given spell in the past x seconds, based on combat log event tracking happening in the background by the framework
@@ -198,14 +187,14 @@ interface IAwfulUnit {
    * @param nameOrId The name or id of the spell to check
    * @param duration The number of seconds to check for
    */
-  used(this: void, nameOrId: AwfulNameOrId, duration: number): boolean;
+  used(this: void, nameOrId: string | number, duration: number): boolean;
 
   /**
    * Distance between the object and another object, accounting for combat reach and bounding radius
    *
    * @param unit The unit to check.
    */
-  distanceTo(this: void, unit: IAwfulUnit): number;
+  distanceTo(this: void, unit: AwfulUnit): number;
 
   /**
    * Distance between the object and another object
@@ -214,7 +203,7 @@ interface IAwfulUnit {
    */
   distanceToLiteral(
     this: void,
-    unitOrPosition: IAwfulUnit | AwfulPosition
+    unitOrPosition: AwfulUnit | AwfulPosition
   ): number;
 
   /**
@@ -223,7 +212,7 @@ interface IAwfulUnit {
    * @param unit The unit to check.
    * @param angle The angle to check for.
    */
-  facing(this: void, unit: IAwfulUnit, angle?: number): boolean;
+  facing(this: void, unit: AwfulUnit, angle?: number): boolean;
 
   /**
    * Checks if the object is facing a given position [at a 180 degree angle by default - the required facing angle to cast spells]
@@ -246,14 +235,14 @@ interface IAwfulUnit {
    *
    * @param unit The unit to check.
    */
-  losOf(this: void, unit: IAwfulUnit): boolean;
+  losOf(this: void, unit: AwfulUnit): boolean;
 
   /**
    * Checks LoS without accounting for LoS-impairing effects like smoke bomb.
    *
    * @param unit The unit to check.
    */
-  losOfLiteral(this: void, unit: IAwfulUnit): boolean;
+  losOfLiteral(this: void, unit: AwfulUnit): boolean;
 
   /**
    * Current 3D position of the object.
@@ -273,7 +262,7 @@ interface IAwfulUnit {
    * @param time The time in seconds.
    * @param unit Unit to check or player if not specified.
    */
-  predictDistance(this: void, time: number, unit?: IAwfulUnit): number;
+  predictDistance(this: void, time: number, unit?: AwfulUnit): number;
 
   /**
    * The object's estimated distance from the given Awful Object after the given time has elapsed (ignoring combat reach)
@@ -281,7 +270,7 @@ interface IAwfulUnit {
    * @param time The time in seconds.
    * @param unit Unit to check or player if not specified.
    */
-  predictDistanceLiteral(this: void, time: number, unit?: IAwfulUnit): number;
+  predictDistanceLiteral(this: void, time: number, unit?: AwfulUnit): number;
 
   /**
    *  The object's estimated distance from the given position after the given time has elapsed.
@@ -305,14 +294,14 @@ interface IAwfulUnit {
    * @param time The time in seconds.
    * @param unit The unit to check or player if not specified.
    */
-  predictLoS(this: void, time: number, unit?: IAwfulUnit): boolean;
+  predictLoS(this: void, time: number, unit?: AwfulUnit): boolean;
 
   /**
    * Checks if the unit is in melee range of another unit.
    *
    * @param unit The unit to check.
    */
-  meleeRangeOf(this: void, unit: IAwfulUnit): boolean;
+  meleeRangeOf(this: void, unit: AwfulUnit): boolean;
 
   /**
    * Checks if the unit is / has been moving toward another unit.
@@ -322,8 +311,8 @@ interface IAwfulUnit {
    */
   movingToward(
     this: void,
-    unit: IAwfulUnit,
-    params?: IAwfulMovingParams
+    unit: AwfulUnit,
+    params?: AwfulMovingParams
   ): boolean;
 
   /**
@@ -334,8 +323,8 @@ interface IAwfulUnit {
    */
   movingAwayFrom(
     this: void,
-    unit: IAwfulUnit,
-    params?: IAwfulMovingParams
+    unit: AwfulUnit,
+    params?: AwfulMovingParams
   ): boolean;
 
   setTarget(this: void): void;
@@ -357,14 +346,14 @@ interface IAwfulUnit {
    */
   v2attackers(this: void): LuaMultiReturn<[number, number, number, number]>;
 
-  predictLoSOf(this: void, unit: IAwfulUnit, elapsed: number): boolean;
+  predictLoSOf(this: void, unit: AwfulUnit, elapsed: number): boolean;
 
   predictLoSOf(this: void, elapsed: number): boolean;
 
   /**
    * Value between 0-255 based on their scaled threat percentage if they are on the threat table, returning -1 with no threat
    */
-  threatWith(this: void, unit: IAwfulUnit): number;
+  threatWith(this: void, unit: AwfulUnit): number;
 
   readonly unit: string;
 
@@ -406,7 +395,7 @@ interface IAwfulUnit {
   /**
    * Get the unit creator.
    */
-  readonly creator: IAwfulUnit;
+  readonly creator: AwfulUnit;
 
   /**
    * Check if the unit is friendly.
@@ -463,7 +452,7 @@ interface IAwfulUnit {
   /**
    * Can be an empty object.
    */
-  readonly target: IAwfulUnit;
+  readonly target: AwfulUnit;
 
   /**
    * Checks if the unit is visible (within render range).
@@ -686,7 +675,7 @@ interface IAwfulUnit {
 
   readonly castID: number | false;
 
-  readonly castTarget?: IAwfulUnit;
+  readonly castTarget?: AwfulUnit;
 
   readonly castPct: number;
 
@@ -708,6 +697,9 @@ interface IAwfulUnit {
    */
   readonly channelRemains: number;
 
+  /**
+   * The end time of the object's channel.
+   */
   readonly channelTimeComplete: number;
 
   /**
@@ -1054,7 +1046,7 @@ interface IAwfulUnit {
   readonly timeInLoS: number;
 }
 
-interface IAwfulPlayers extends IAwfulUnit {
+interface AwfulPlayers extends AwfulUnit {
   /**
    * Time until the unit's next GCD is available (if any).
    */
@@ -1088,19 +1080,14 @@ interface IAwfulPlayers extends IAwfulUnit {
   readonly class2: Classes2;
 
   /**
-   * The unit's covenant or false if it doesn't have one.
-   */
-  readonly covenant: Covenants | false;
-
-  /**
    * Max Velocity of moving unit.
    */
   readonly speed2: number;
 
-  readonly castingTarget: IAwfulPlayers;
+  readonly castingTarget: AwfulPlayers;
 }
 
-interface IAwfulAlly extends IAwfulPlayers {
+interface AwfulAlly extends AwfulPlayers {
   readonly spec: AwfulClassSpecs;
 
   /**
@@ -1110,7 +1097,7 @@ interface IAwfulAlly extends IAwfulPlayers {
   readonly inspect: Object;
 }
 
-interface IAwfulPlayer extends IAwfulAlly {
+interface AwfulPlayer extends AwfulAlly {
   /**
    * Checks if the player has the given talent or PvP talent selected.
    *
@@ -1120,9 +1107,9 @@ interface IAwfulPlayer extends IAwfulAlly {
    */
   hasTalent(this: void, talent: string | number): false | number;
 
-  hasConduit(this: void, conduitnameOrId: AwfulNameOrId): boolean;
+  hasConduit(this: void, conduitnameOrId: string | number): boolean;
 
-  face(this: void, unitOrdirection?: IAwfulUnit | number): void;
+  face(this: void, unitOrdirection?: AwfulUnit | number): void;
 
   /**
    * Checks to see if x,y,z position is in los of player

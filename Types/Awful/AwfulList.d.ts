@@ -7,7 +7,7 @@ type AwfulListLoopCallback<T> = (
   uptime: number
 ) => void;
 
-type AwfulListReturn<T> = LuaMultiReturn<[number, number, IAwfulList<T>]>;
+type AwfulListReturn<T> = LuaMultiReturn<[number, number, AwfulList<T>]>;
 
 type AwfulListSortFilter<T> = (this: void, a: T, b: T) => boolean;
 
@@ -15,7 +15,7 @@ type AwfulListStompCallback<T> = (this: void, unit: T, uptime: number) => void;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-interface IAwfulList<T> extends Array<T> {
+interface AwfulList<T> extends Array<T> {
   /**
    *
    * @param unitOrPos unit or position to check
@@ -28,7 +28,7 @@ interface IAwfulList<T> extends Array<T> {
    */
   around(
     this: void,
-    unitOrPos: IAwfulUnit | AwfulPosition,
+    unitOrPos: AwfulUnit | AwfulPosition,
     distance: number,
     criteria?: AwfulListFilter<T>
   ): AwfulListReturn<T>;
@@ -39,7 +39,7 @@ interface IAwfulList<T> extends Array<T> {
    *
    * @returns An {@link IAwfulList} of filtered units.
    */
-  filter(this: void, criteria: AwfulListFilter<T>): IAwfulList<T>;
+  filter(this: void, criteria: AwfulListFilter<T>): AwfulList<T>;
 
   /**
    * Iterate over each unit in the list.
@@ -51,7 +51,7 @@ interface IAwfulList<T> extends Array<T> {
 
   stomp(this: void, callback: AwfulListStompCallback<T>): void;
 
-  sort(this: void, criteria: AwfulListSortFilter<T>): IAwfulList<T>;
+  sort(this: void, criteria: AwfulListSortFilter<T>): AwfulList<T>;
 
   /**
    * Filter the units in the list by the distance specified.
@@ -60,7 +60,7 @@ interface IAwfulList<T> extends Array<T> {
    *
    * @returns An {@link IAwfulList} of filtered units.
    */
-  within(this: void, range: number): IAwfulList<T>;
+  within(this: void, range: number): AwfulList<T>;
 
   /**
    * @returns 0 - bestAngle
@@ -72,6 +72,6 @@ interface IAwfulList<T> extends Array<T> {
     a: number,
     steps: number,
     criteria: AwfulListSortFilter<T>,
-    unit: IAwfulUnit
+    unit: AwfulUnit
   ): LuaMultiReturn<[number, number]>;
 }

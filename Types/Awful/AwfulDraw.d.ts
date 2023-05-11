@@ -1,12 +1,20 @@
-interface IAwfulDraw {
-  this: IAwfulDraw;
+interface AwfulDraw {
+  this: AwfulDraw;
   enabled: boolean;
-  Enable(this: IAwfulDraw): boolean;
-  Disable(this: IAwfulDraw): boolean;
+  Enable(this: AwfulDraw): boolean;
+  Disable(this: AwfulDraw): boolean;
 }
 
-interface IAwfulDrawer {
-  this: IAwfulDrawer;
+interface AwfulDrawTextureParams {
+  /* Use wow api GetSpellTexture to get texture  */
+  texture: string;
+  width: number;
+  height: number;
+  alpha: number;
+}
+
+interface AwfulDrawer {
+  this: AwfulDrawer;
   level: string;
   SetColor(r: number, g: number, b: number, a: number): void;
   SetColorRaw(r: number, g: number, b: number, a: number): void;
@@ -58,7 +66,12 @@ interface IAwfulDrawer {
   ): void;
   //Array(vectors, x, y, z, rotationX, rotationY, rotationZ)
   Text(text: string, font: string, x: number, y: number, z: number): void;
-  Texture(texture: IAwfulDrawTexture, x: number, y: number, z: number): void;
+  Texture(
+    texture: AwfulDrawTextureParams,
+    x: number,
+    y: number,
+    z: number
+  ): void;
   Arc(
     x: number,
     y: number,
@@ -82,11 +95,4 @@ interface IAwfulDrawer {
     radius: number,
     height: number
   ): void;
-}
-interface IAwfulDrawTexture {
-  /* Use wow api GetSpellTexture to get texture  */
-  texture: string;
-  width: number;
-  height: number;
-  alpha: number;
 }
