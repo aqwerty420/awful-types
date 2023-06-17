@@ -23,11 +23,11 @@ dependencies:
 
 devDependencies:
   '@commitlint/cli':
-    specifier: 17.3.0
-    version: 17.3.0
+    specifier: 17.6.5
+    version: 17.6.5
   '@commitlint/config-conventional':
-    specifier: 17.3.0
-    version: 17.3.0
+    specifier: 17.6.5
+    version: 17.6.5
   '@types/node':
     specifier: 18.16.18
     version: 18.16.18
@@ -76,8 +76,8 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@commitlint/cli@17.3.0:
-    resolution: {integrity: sha512-/H0md7TsKflKzVPz226VfXzVafJFO1f9+r2KcFvmBu08V0T56lZU1s8WL7/xlxqLMqBTVaBf7Ixtc4bskdEEZg==}
+  /@commitlint/cli@17.6.5:
+    resolution: {integrity: sha512-3PQrWr/uo6lzF5k7n5QuosCYnzaxP9qGBp3jhWP0Vmsa7XA6wrl9ccPqfQyXpSbQE3zBROVO3TDqgPKe4tfmLQ==}
     engines: {node: '>=v14'}
     hasBin: true
     dependencies:
@@ -96,8 +96,8 @@ packages:
       - '@swc/wasm'
     dev: true
 
-  /@commitlint/config-conventional@17.3.0:
-    resolution: {integrity: sha512-hgI+fN5xF8nhS9uG/V06xyT0nlcyvHHMkq0kwRSr96vl5BFlRGaL2C0/YY4kQagfU087tmj01bJkG9Ek98Wllw==}
+  /@commitlint/config-conventional@17.6.5:
+    resolution: {integrity: sha512-Xl9H9KLl86NZm5CYNTNF9dcz1xelE/EbvhWIWcYxG/rn3UWYWdWmmnX2q6ZduNdLFSGbOxzUpIx61j5zxbeXxg==}
     engines: {node: '>=v14'}
     dependencies:
       conventional-changelog-conventionalcommits: 5.0.0
