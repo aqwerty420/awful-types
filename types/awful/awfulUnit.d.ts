@@ -52,6 +52,18 @@ interface AwfulUnit {
   ): number;
 
   /**
+   * The base duration of a specific buff on the object
+   *
+   * @param nameOrId The name or id of the desired buff
+   * @param sourceUnit The source unit of the desired buff
+   */
+  buffDuration(
+    this: void,
+    nameOrId: string | number,
+    sourceUnit?: AwfulUnit
+  ): number;
+
+  /**
    * Number of stacks the object has for a buff
    *
    * @param nameOrId The name or id of the desired buff
@@ -121,6 +133,18 @@ interface AwfulUnit {
    * @param sourceUnit The source unit of the desired debuff
    */
   debuffRemains(
+    this: void,
+    nameOrId: string | number,
+    sourceUnit?: AwfulUnit
+  ): number;
+
+  /**
+   * The base duration of a specific debuff on the object
+   *
+   * @param nameOrId The name or id of the desired debuff
+   * @param sourceUnit The source unit of the desired debuff
+   */
+  debuffDuration(
     this: void,
     nameOrId: string | number,
     sourceUnit?: AwfulUnit
