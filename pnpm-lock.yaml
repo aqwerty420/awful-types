@@ -18,8 +18,8 @@ dependencies:
     specifier: 5.1.6
     version: 5.1.6
   typescript-to-lua:
-    specifier: 1.16.2
-    version: 1.16.2(typescript@5.1.6)
+    specifier: 1.27.0
+    version: 1.27.0(typescript@5.1.6)
 
 devDependencies:
   '@commitlint/cli':
@@ -504,6 +504,10 @@ packages:
 
   /@typescript-to-lua/language-extensions@1.0.0:
     resolution: {integrity: sha512-GtmhFqyg+txpGgGLM3mlS3R6AEG9MQhKALxxcbr6SBzg9u7YAXcPKqUBaBYd6nH+Pi/eQLcWz4BNOLhz8v4TjQ==}
+    dev: false
+
+  /@typescript-to-lua/language-extensions@1.19.0:
+    resolution: {integrity: sha512-Os5wOKwviTD4LeqI29N0btYOjokSJ97iCf45EOjIABlb5IwNQy7AE/AqZJobRw3ywHH8+KzJUMkEirWPzh2tUA==}
     dev: false
 
   /JSONStream@1.3.5:
@@ -1644,7 +1648,6 @@ packages:
   /picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
-    dev: true
 
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -2011,15 +2014,16 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /typescript-to-lua@1.16.2(typescript@5.1.6):
-    resolution: {integrity: sha512-QtkQCDMNWMVilw/MsgIMLEVKYmSXvTgM21Li77KKKOyDJ+sSxph2oJfQ8XvXI3X6sse9VZhYC7gKLWi7qHKr7w==}
+  /typescript-to-lua@1.27.0(typescript@5.1.6):
+    resolution: {integrity: sha512-+J4SMCWxWGCUKqkkoUZVbmfhRO+8rYt5hBIJ/7adD8/Pv0nEIfWBTPirCdzMOoegbi1NB7QsRuUvbbftUVpnLw==}
     engines: {node: '>=16.10.0'}
     hasBin: true
     peerDependencies:
-      typescript: ~5.1.3
+      typescript: 5.6.2
     dependencies:
-      '@typescript-to-lua/language-extensions': 1.0.0
+      '@typescript-to-lua/language-extensions': 1.19.0
       enhanced-resolve: 5.15.0
+      picomatch: 2.3.1
       resolve: 1.22.2
       source-map: 0.7.4
       typescript: 5.1.6
